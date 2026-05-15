@@ -140,7 +140,7 @@ function HighlightCard({ highlight }: { highlight: Highlight }) {
           className="text-blue"
           aria-hidden
         />
-        <h3 className="mt-3 font-display text-lg leading-tight md:text-xl">
+        <h3 className="mt-3 font-display text-lg leading-tight text-black md:text-xl">
           {highlight.title}
         </h3>
         <ul className="mt-3 space-y-1.5 text-[13px] leading-relaxed text-foreground/75">
@@ -167,7 +167,7 @@ export function ProductShowcase() {
           <Eyebrow tone="light">Platform</Eyebrow>
         </Reveal>
         <Reveal delay={0.1}>
-          <h2 className="mt-4 font-display text-[26px] leading-tight text-foreground sm:mt-5 sm:text-3xl md:text-4xl">
+          <h2 className="mt-4 font-display text-[26px] leading-tight text-black sm:mt-5 sm:text-3xl md:text-4xl">
             Why enterprises choose Incode
           </h2>
         </Reveal>

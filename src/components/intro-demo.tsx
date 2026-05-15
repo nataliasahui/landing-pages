@@ -83,7 +83,7 @@ export function IntroDemo() {
                   <Icon size={16} />
                 </span>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-display text-base md:text-lg text-foreground">
+                  <h3 className="font-display text-base md:text-lg text-black">
                     {step.title}
                   </h3>
                   <p className="mt-1.5 max-w-md text-sm text-grey-on-white">

@@ -130,7 +130,7 @@ export function TrustScale() {
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4 sm:mb-10 sm:gap-6">
           <div className="min-w-0">
             <Eyebrow tone="light">Industries</Eyebrow>
-            <h2 className="mt-3 font-display text-[26px] leading-tight text-foreground sm:mt-4 sm:text-3xl md:text-4xl">
+            <h2 className="mt-3 font-display text-[26px] leading-tight text-black sm:mt-4 sm:text-3xl md:text-4xl">
               7.1B+ trust checks in 2025
             </h2>
           </div>

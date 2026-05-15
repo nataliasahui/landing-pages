@@ -51,7 +51,7 @@ function BenefitItem({ benefit }: { benefit: Benefit }) {
       <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#CCE1FF]">
         <Icon size={22} strokeWidth={1.75} className="text-blue" />
       </div>
-      <h3 className="mt-6 font-display text-base">{benefit.title}</h3>
+      <h3 className="mt-6 font-display text-base text-black">{benefit.title}</h3>
       <p className="mt-3 text-sm text-grey-on-white leading-relaxed">
         {benefit.body}
       </p>

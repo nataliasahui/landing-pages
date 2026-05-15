@@ -15,9 +15,9 @@
   --color-blue-500: #0054FF;
   --color-blue-600: #0048E6;
 
-  /* Override Tailwind defaults so bg-white / text-black map to the palette */
+  /* Override Tailwind defaults so bg-white maps to grey-50; black is pure */
   --color-white: #F9F9F9;
-  --color-black: #262831;
+  --color-black: #000000;
 
   /* Semantic aliases mapping legacy tokens to palette */
   --color-background: #F9F9F9;
@@ -27,8 +27,8 @@
   --color-blue-eyebrow: #CCE1FF;
   --color-green: #0054FF;
 
-  --color-rich-black: #262831;
-  --color-off-black: #262831;
+  --color-rich-black: #000000;
+  --color-off-black: #000000;
   --color-off-white: #EBECEF;
 
   --color-grey-on-black: #C6C8D2;

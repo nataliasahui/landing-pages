@@ -107,7 +107,7 @@ function PlatformOutcomes() {
     >
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <h2 className="font-display text-[26px] leading-tight text-balance sm:text-3xl md:text-4xl">
+          <h2 className="font-display text-[26px] leading-tight text-balance text-black sm:text-3xl md:text-4xl">
             Our AI-powered identity platform enables organizations to grow
             without increasing fraud risk
           </h2>
@@ -123,7 +123,7 @@ function PlatformOutcomes() {
                 <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#CCE1FF] sm:h-12 sm:w-12">
                   <Icon size={20} strokeWidth={1.75} className="text-blue" />
                 </div>
-                <h3 className="mt-5 font-display text-base sm:mt-6">{p.title}</h3>
+                <h3 className="mt-5 font-display text-base text-black sm:mt-6">{p.title}</h3>
                 <p className="mt-2 text-sm text-grey-on-white leading-relaxed sm:mt-3">
                   {p.body}
                 </p>
@@ -203,7 +203,7 @@ function ClosingCta() {
     <section className="relative bg-[#F9F9F9] text-foreground overflow-hidden">
       <div className="relative mx-auto max-w-[1280px] px-5 py-14 text-center sm:py-16 md:py-20 lg:px-8">
         <Reveal>
-          <h2 className="mx-auto max-w-3xl font-display text-3xl text-balance sm:text-4xl md:text-5xl">
+          <h2 className="mx-auto max-w-3xl font-display text-3xl text-balance text-black sm:text-4xl md:text-5xl">
             Ready to power trust at scale?
           </h2>
         </Reveal>
