@@ -22,7 +22,11 @@ const USE_CASES = [
 
 export function UseCasesSection() {
   return (
-    <Section id="use-cases" tone="rich">
+    <Section
+      id="use-cases"
+      tone="rich"
+      className="bg-[url('/gradientbg2.png')] bg-cover bg-center bg-no-repeat"
+    >
       <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <Reveal>
