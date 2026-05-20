@@ -1,0 +1,318 @@
+name: Deploy Incode Labs Application
+
+on:
+  push:
+    branches: [ 'main' ]
+  workflow_dispatch:
+    inputs:
+      destroy_app:
+        description: 'Destroy this Labs app without changing repository files'
+        required: false
+        default: 'false'
+      app_name:
+        description: 'Labs app name to destroy; defaults to labspec.yaml app_name'
+        required: false
+        default: ''
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy Application
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyyaml
+
+    - name: Parse labspec.yaml
+      id: config
+      run: |
+        python - <<EOF
+        import yaml
+        import os
+        import json
+        import subprocess
+
+        with open('labspec.yaml', 'r') as f:
+            config = yaml.safe_load(f)
+
+        destroy_input = os.environ.get('DESTROY_APP_INPUT', 'false').lower() == 'true'
+        input_app_name = os.environ.get('INPUT_APP_NAME', '').strip()
+        if destroy_input and input_app_name:
+            config['app_name'] = input_app_name
+            config['image'] = input_app_name
+        destroy_app = destroy_input or bool(config.get('destroy-app', False))
+        if destroy_app:
+            config['secrets'] = []
+
+        git_sha = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode().strip()
+
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            f.write(f"APP_NAME={config['app_name']}\n")
+            f.write(f"IMAGE_NAME={config['image']}\n")
+            f.write(f"IMAGE_TAG={git_sha}\n")
+            f.write(f"CONTAINER_PORT={config['container_port']}\n")
+            f.write(f"DESCRIPTION={config.get('description', '')}\n")
+            f.write(f"DESTROY_APP={str(destroy_app).lower()}\n")
+            f.write(f"SECRETS_LIST={json.dumps(config.get('secrets', []))}\n")
+            f.write(f"INSTANCE_SIZE={config.get('instance_size', 'small')}\n")
+            f.write(f"LABSPEC={json.dumps(config)}\n")
+        EOF
+      env:
+        DESTROY_APP_INPUT: ${{ github.event.inputs.destroy_app || 'false' }}
+        INPUT_APP_NAME: ${{ github.event.inputs.app_name || '' }}
+      shell: bash
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::927715221157:role/github-actions-role
+        aws-region: us-east-1
+        mask-aws-account-id: false
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Create ECR repository
+      if: ${{ steps.config.outputs.DESTROY_APP != 'true' }}
+      run: |
+        aws ecr describe-repositories --repository-names ${{ steps.config.outputs.IMAGE_NAME }} || \
+        aws ecr create-repository --repository-name ${{ steps.config.outputs.IMAGE_NAME }}
+
+    - name: Set up Docker Buildx
+      if: ${{ steps.config.outputs.DESTROY_APP != 'true' }}
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build and push Docker image
+      if: ${{ steps.config.outputs.DESTROY_APP != 'true' }}
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.login-ecr.outputs.registry }}/${{ steps.config.outputs.IMAGE_NAME }}:${{ steps.config.outputs.IMAGE_TAG }}
+        cache-from: type=gha,scope=${{ steps.config.outputs.APP_NAME }}
+        cache-to: type=gha,mode=max,scope=${{ steps.config.outputs.APP_NAME }}
+
+    - name: Export secrets to AWS Secrets Manager
+      if: ${{ steps.config.outputs.DESTROY_APP != 'true' }}
+      run: |
+        python - <<EOF
+        import json
+        import os
+        import subprocess
+
+        secrets_list = json.loads('${{ steps.config.outputs.SECRETS_LIST }}')
+        github_secrets = json.loads(os.environ['SECRETS'])
+        missing = []
+
+        for secret_name in secrets_list:
+            aws_secret_name = f"incode-labs/${{ steps.config.outputs.APP_NAME }}/{secret_name}"
+            if secret_name in github_secrets:
+                secret_value = github_secrets[secret_name]
+                try:
+                    subprocess.run([
+                        'aws', 'secretsmanager', 'create-secret',
+                        '--name', aws_secret_name,
+                        '--secret-string', secret_value
+                    ], check=True, capture_output=True)
+                except subprocess.CalledProcessError as e:
+                    if 'ResourceExistsException' in e.stderr.decode():
+                        subprocess.run([
+                            'aws', 'secretsmanager', 'put-secret-value',
+                            '--secret-id', aws_secret_name,
+                            '--secret-string', secret_value
+                        ], check=True)
+                    else:
+                        raise
+            else:
+                existing = subprocess.run([
+                    'aws', 'secretsmanager', 'describe-secret',
+                    '--secret-id', aws_secret_name,
+                    '--region', 'us-east-1'
+                ], capture_output=True)
+                if existing.returncode == 0:
+                    print(f"Secret {secret_name} already exists in Labs Secrets Manager; leaving it unchanged")
+                else:
+                    missing.append((secret_name, aws_secret_name))
+
+        if missing:
+            for secret_name, aws_secret_name in missing:
+                print(f"::error::Secret {secret_name} is declared in labspec.yaml but is not configured as a GitHub Actions secret and {aws_secret_name} does not exist in Labs Secrets Manager")
+            raise SystemExit(1)
+        EOF
+      env:
+        SECRETS: ${{ toJSON(secrets) }}
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.11.0"
+
+    - name: Download Terraform module
+      run: |
+        mkdir -p infra/modules/app
+        aws s3 cp s3://bootstrap-labs-incode-com/modules/app/v1/ infra/modules/app/ \
+          --recursive --exclude "*" --include "*.tf"
+        ls -l infra/modules/app/
+
+    - name: Generate Terraform configuration
+      run: |
+        mkdir -p infra
+        pip install PyYAML
+
+        python - <<EOF
+        import json
+        import yaml
+        import os
+
+        labspec = json.loads(os.environ['LABSPEC_JSON'])
+
+        secrets_tf = json.dumps(labspec.get('secrets', []))
+        sizes = {
+            'small':   {'cpu': 256,  'memory': 512},
+            'medium':  {'cpu': 512,  'memory': 1024},
+            'large':   {'cpu': 1024, 'memory': 2048},
+            'xlarge':  {'cpu': 2048, 'memory': 4096},
+            'xxlarge': {'cpu': 4096, 'memory': 8192},
+        }
+        instance_size = labspec.get('instance_size', 'small')
+        if instance_size not in sizes:
+            print(f"Warning: Unknown instance_size '{instance_size}', using 'small'")
+            instance_size = 'small'
+        resources = sizes[instance_size]
+
+        terraform_config = f'''module "app" {{
+          source = "./modules/app"
+
+          app_name = "${{ steps.config.outputs.APP_NAME }}"
+          image = "${{ steps.login-ecr.outputs.registry }}/${{ steps.config.outputs.IMAGE_NAME }}:${{ steps.config.outputs.IMAGE_TAG }}"
+          container_port = ${{ steps.config.outputs.CONTAINER_PORT }}
+          secrets = {secrets_tf}
+          cpu = {resources['cpu']}
+          memory = {resources['memory']}
+        }}'''
+
+        with open('infra/main.tf', 'w') as f:
+            f.write(terraform_config)
+        EOF
+
+        cat > infra/backend.tf <<EOF
+        terraform {
+          backend "s3" {
+            bucket = "incode-labs-tfstate-34bb8h7"
+            key    = "apps/${{ steps.config.outputs.APP_NAME }}/terraform.tfstate"
+            region = "us-east-1"
+          }
+        }
+        EOF
+      env:
+        LABSPEC_JSON: ${{ steps.config.outputs.LABSPEC }}
+
+    - name: Terraform Init
+      run: |
+        cd infra
+        terraform init
+
+    - name: Terraform Apply
+      if: ${{ steps.config.outputs.DESTROY_APP != 'true' }}
+      run: |
+        cd infra
+        terraform apply -auto-approve
+
+    - name: Wait for ECS service to stabilize
+      if: ${{ steps.config.outputs.DESTROY_APP != 'true' }}
+      run: |
+        aws ecs wait services-stable \
+          --cluster incode-labs-cluster \
+          --services ${{ steps.config.outputs.APP_NAME }} \
+          --region us-east-1
+        echo "Service stable."
+
+    - name: Update Apps Database
+      if: ${{ steps.config.outputs.DESTROY_APP != 'true' }}
+      run: |
+        pip install boto3
+        python - <<EOF
+        import json
+        import boto3
+        import datetime
+
+        app_name = "${{ steps.config.outputs.APP_NAME }}"
+        description = "${{ steps.config.outputs.DESCRIPTION }}"
+        labspec = json.loads('${{ steps.config.outputs.LABSPEC }}')
+        repo_url = "https://github.com/${{ github.repository }}"
+
+        item = {
+            "app_name": {"S": app_name},
+            "description": {"S": description or "No description available"},
+            "deployment_date": {"S": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")},
+            "url": {"S": f"https://{app_name}.labs.incode.com"},
+            "status": {"S": "ACTIVE"},
+            "repo_url": {"S": repo_url},
+            "labspec": {"S": json.dumps(labspec)}
+        }
+
+        boto3.client('dynamodb').put_item(TableName="incode-labs-apps", Item=item)
+        print(f"Updated app {app_name} in DynamoDB")
+        EOF
+
+        aws lambda invoke \
+          --function-name incode-labs-apps-updater \
+          --payload '{}' \
+          response.json
+
+    - name: Terraform Destroy
+      if: ${{ steps.config.outputs.DESTROY_APP == 'true' }}
+      run: |
+        cd infra
+        terraform destroy -auto-approve
+
+    - name: Delete ECR repository
+      if: ${{ steps.config.outputs.DESTROY_APP == 'true' }}
+      run: |
+        aws ecr delete-repository --repository-name ${{ steps.config.outputs.IMAGE_NAME }} --force --region us-east-1 || true
+
+    - name: Delete app secrets
+      if: ${{ steps.config.outputs.DESTROY_APP == 'true' }}
+      run: |
+        secrets=$(aws secretsmanager list-secrets \
+          --filters Key=name,Values="incode-labs/${{ steps.config.outputs.APP_NAME }}/" \
+          --query 'SecretList[].Name' \
+          --output text \
+          --region us-east-1 2>/dev/null || true)
+        for secret in $secrets; do
+          aws secretsmanager delete-secret --secret-id "$secret" --force-delete-without-recovery --region us-east-1 || true
+        done
+
+    - name: Remove App from Database
+      if: ${{ steps.config.outputs.DESTROY_APP == 'true' }}
+      run: |
+        pip install boto3
+        python - <<EOF
+        import boto3
+        app_name = "${{ steps.config.outputs.APP_NAME }}"
+        boto3.client('dynamodb').delete_item(
+            TableName="incode-labs-apps",
+            Key={"app_name": {"S": app_name}}
+        )
+        print(f"Removed app {app_name} from DynamoDB")
+        EOF
+
+        aws lambda invoke \
+          --function-name incode-labs-apps-updater \
+          --payload '{}' \
+          response.json

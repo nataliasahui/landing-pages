@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.github
+.vercel
+.vercel.govfacematch.bak
+.claude
+.figma-ref.png
+*.log
+.DS_Store
+README.md
+AGENTS.md
+CLAUDE.md
+.vercelignore
+public/GFMExplainer_Hero.mp4
+public/Screen Recording*

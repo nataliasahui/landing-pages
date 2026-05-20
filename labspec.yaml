@@ -1,0 +1,9 @@
+app_name: website
+description: 'Govfacematch marketing site (Labs testing environment for the website)'
+image: website
+tag: latest
+container_port: 3000
+instance_size: small
+destroy-app: false
+
+secrets: []
