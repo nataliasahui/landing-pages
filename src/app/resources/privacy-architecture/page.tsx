@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   ArrowUpRight,
   ArrowRight,
-  User,
 } from "lucide-react";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
@@ -208,12 +207,11 @@ function QuoteAndStats() {
           </Reveal>
           <Reveal delay={0.2}>
             <figcaption className="mt-8 flex items-center gap-4">
-              <span
-                aria-hidden
-                className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/70"
-              >
-                <User size={22} strokeWidth={1.5} />
-              </span>
+              <img
+                src="/ricardo-amper.png"
+                alt="Ricardo Amper"
+                className="h-14 w-14 shrink-0 rounded-full border border-white/15 object-cover"
+              />
               <div>
                 <div className="text-sm font-medium text-white">Ricardo Amper</div>
                 <div className="mt-0.5 text-xs text-grey-on-black">
