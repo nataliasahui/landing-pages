@@ -1,24 +1,24 @@
-# Govfacematch
+# Govfacematch — archived in favor of IncodeTechnologies/website
 
-Marketing site for Govfacematch, built with [Next.js](https://nextjs.org).
+> **This repository is no longer the working copy.** All development and deploys
+> happen on [`IncodeTechnologies/website`](https://github.com/IncodeTechnologies/website).
 
-## Getting started
+The Incode Labs deploy pipeline (AWS OIDC) only trusts `IncodeTechnologies/website`,
+so pushes here never deployed to https://website.labs.incode.com.
 
-Install dependencies and run the dev server:
+## Collaborators — switch your local clone
 
 ```bash
-npm install
-npm run dev
+git remote set-url origin https://github.com/IncodeTechnologies/website.git
+git fetch origin
+git checkout main
+git reset --hard origin/main
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+If you're missing access to `IncodeTechnologies/website`, ping Sofia Carrington.
 
-Edit `app/page.tsx` to update the homepage. The page auto-reloads as you save.
+## Why both repos existed
 
-## Deployment
-
-The site deploys to **Incode Labs** at https://website.labs.incode.com.
-
-Deploys run automatically when changes are pushed to `main` in [`IncodeTechnologies/website`](https://github.com/IncodeTechnologies/website) — the GitHub Actions workflow in `.github/workflows/deploy.yml` builds the Docker image, pushes it to ECR, and applies the Terraform module declared in `labspec.yaml`.
-
-To tear the app down, run the **Deploy Incode Labs Application** workflow manually with `destroy_app: true`.
+The personal copy held in-progress feature work while the Labs deploy was being
+set up on the Incode org repo. All of that work has now been merged into
+`IncodeTechnologies/website/main` (signed squash commit `acca4cb`).
