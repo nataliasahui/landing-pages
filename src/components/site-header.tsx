@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import {
   ArrowUpRight,
   BadgeCheck,
+  BookOpen,
   Brain,
   Building,
   Building2,
@@ -16,18 +17,24 @@ import {
   Cpu,
   Dice5,
   FileQuestion,
+  FileText,
   Fingerprint,
   Gamepad2,
   Gauge,
+  GraduationCap,
   HeartPulse,
   IdCard,
   Landmark,
   LayoutDashboard,
+  Lock,
   Menu,
   MessageCircle,
   Network,
+  Newspaper,
   Palette,
   Plug,
+  Puzzle,
+  Handshake,
   ScanFace,
   ScanLine,
   ShieldCheck,
@@ -36,6 +43,7 @@ import {
   Sparkles,
   TrendingUp,
   UserCheck,
+  Video,
   Workflow,
   X,
 } from "lucide-react";
@@ -124,15 +132,47 @@ const SOLUTIONS_MENU: MenuColumn[] = [
   },
 ];
 
+const RESOURCES_MENU: MenuColumn[] = [
+  {
+    heading: "Learning",
+    columns: 2,
+    links: [
+      { icon: ShieldCheck, title: "Trust Center", sub: "Security, privacy, and compliance posture", href: "#" },
+      { icon: Lock, title: "Privacy Architecture", sub: "The protection layer that holds no data", href: "/resources/privacy-architecture" },
+      { icon: BookOpen, title: "Resources Library", sub: "Guides, white papers, and reports", href: "#" },
+      { icon: GraduationCap, title: "Incode Academy", sub: "Training and certifications", href: "#" },
+      { icon: Video, title: "Webinars", sub: "On-demand and upcoming sessions", href: "#" },
+      { icon: FileText, title: "Case studies", sub: "How customers deploy Incode", href: "#" },
+    ],
+  },
+  {
+    heading: "Stay informed",
+    links: [
+      { icon: Newspaper, title: "Blog", href: "#" },
+      { icon: MessageCircle, title: "Press", href: "#" },
+      { icon: CalendarCheck, title: "Events", href: "#" },
+    ],
+  },
+  {
+    heading: "For partners",
+    links: [
+      { icon: Handshake, title: "Partner Program", href: "/partner-program" },
+      { icon: Puzzle, title: "Integrations", href: "/integrations" },
+    ],
+  },
+];
+
 const MEGA_MENUS: Record<string, MenuColumn[]> = {
   Platform: PLATFORM_MENU,
   Solutions: SOLUTIONS_MENU,
+  Resources: RESOURCES_MENU,
 };
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -295,17 +335,73 @@ export function SiteHeader() {
             className="lg:hidden overflow-hidden border-t border-border-light/70 bg-background/95 backdrop-blur-xl px-4 pb-5"
           >
             <div className="flex flex-col gap-1 pt-3">
-              {NAV.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/85 hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
-                >
-                  {item.label}
-                  {item.hasMenu && <ChevronDown size={14} className="text-foreground/40" />}
-                </a>
-              ))}
+              {NAV.map((item) => {
+                const mega = MEGA_MENUS[item.label];
+                const expanded = mobileExpanded === item.label;
+                if (mega) {
+                  return (
+                    <div key={item.label}>
+                      <button
+                        type="button"
+                        onClick={() => setMobileExpanded(expanded ? null : item.label)}
+                        className="flex w-full items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/85 hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
+                      >
+                        {item.label}
+                        <ChevronDown
+                          size={14}
+                          className={cn(
+                            "text-foreground/40 transition-transform duration-200",
+                            expanded && "rotate-180",
+                          )}
+                        />
+                      </button>
+                      {expanded && (
+                        <div className="ml-3 mt-1 mb-2 flex flex-col gap-3 border-l border-border-light/70 pl-4">
+                          {mega.map((col) => (
+                            <div key={col.heading}>
+                              <div className="px-1 py-1 text-[11px] font-medium uppercase tracking-wide text-grey-on-white/80">
+                                {col.heading}
+                              </div>
+                              <div className="flex flex-col">
+                                {col.links.map((link) => {
+                                  const Icon = link.icon;
+                                  return (
+                                    <Link
+                                      key={link.title}
+                                      href={link.href}
+                                      onClick={() => {
+                                        setMobileOpen(false);
+                                        setMobileExpanded(null);
+                                      }}
+                                      className="flex items-center gap-3 rounded-lg px-2 py-2 text-[14px] text-foreground/80 hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
+                                    >
+                                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border-light/70 bg-off-white/70 text-foreground/70">
+                                        <Icon size={14} strokeWidth={1.75} />
+                                      </span>
+                                      {link.title}
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/85 hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
+                  >
+                    {item.label}
+                    {item.hasMenu && <ChevronDown size={14} className="text-foreground/40" />}
+                  </a>
+                );
+              })}
               <ButtonLink
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
