@@ -3,6 +3,7 @@ import { ArrowUpRight, BadgeCheck, Code2, Compass, Settings2, Star } from "lucid
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { PageHeading } from "@/components/ui/page-heading";
 import { CATEGORIES } from "@/components/integrations-data";
 import { IntegrationsMarketplace } from "@/components/integrations-marketplace";
 import PartnerEcosystemAnimation, {
@@ -75,10 +76,9 @@ function Hero() {
               <Eyebrow tone="light">Incode Marketplace</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
-              <h1 className="mt-6 font-display text-4xl leading-[1.05] text-balance text-black sm:text-5xl md:text-[56px]">
-                Verified identity, built into the tools you{" "}
-                <span className="text-blue">already use.</span>
-              </h1>
+              <PageHeading className="mt-6">
+                Verified identity, built into the tools you already use.
+              </PageHeading>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-grey-on-white sm:text-[17px]">

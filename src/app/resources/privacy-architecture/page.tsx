@@ -6,6 +6,7 @@ import {
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { PageHeading } from "@/components/ui/page-heading";
 import { HeroVideo } from "@/components/hero-video";
 import { PrivacyTabs } from "@/components/privacy-tabs";
 
@@ -85,9 +86,9 @@ function Hero() {
               <Eyebrow>Privacy Architecture</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
-              <h1 className="mt-5 font-display text-4xl leading-[1.05] text-balance sm:text-5xl md:text-6xl">
+              <PageHeading tone="dark" className="mt-5">
                 Privacy Architecture
-              </h1>
+              </PageHeading>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="mt-6 font-display-regular text-xl text-balance text-white/85 sm:text-2xl">

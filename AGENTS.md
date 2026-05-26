@@ -33,9 +33,30 @@ Rules to fill in (replace placeholders with your specifics):
 - Eyebrow labels: use the `<Eyebrow>` component, never style inline
 - Headline balance: add `text-balance` to multi-line h1/h2 so line wraps look intentional
 
+### Page title headings (h1) — strict
+
+**Always use the `<PageHeading>` component.** Never write a raw `<h1>` for a page hero title.
+
+```tsx
+import { PageHeading } from "@/components/ui/page-heading";
+
+// Light background (default)
+<PageHeading className="mt-6">Page title goes here.</PageHeading>
+
+// Dark background
+<PageHeading tone="dark" className="mt-6">Page title goes here.</PageHeading>
+```
+
+The component locks in the canonical title spec:
+- Font: `font-display`
+- Size scale: `text-4xl sm:text-5xl md:text-[56px]` (no `lg:` override — never bigger than 56px)
+- Line-height: `leading-[1.05]`
+- Wrap: `text-balance`
+- Color: `text-black` (light bg) or `text-white` (dark bg) — **no other colors, no accent spans, no gradients inside the heading**
+
 Rules to fill in:
 
-- [ ] [ADD TYPOGRAPHY SCALE RULES HERE — e.g., "h1 always uses md:text-[56px]"]
+- [ ] [ADD TYPOGRAPHY SCALE RULES FOR h2/h3 HERE]
 - [ ] [ADD FONT-WEIGHT RULES HERE — e.g., "never use font-bold on body text"]
 
 ## Components

@@ -1,5 +1,6 @@
 import { Section, Eyebrow } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
+import { PageHeading } from "@/components/ui/page-heading";
 import { ContactForm } from "@/components/contact-form";
 import { Check } from "lucide-react";
 
@@ -24,9 +25,9 @@ export default function ContactPage() {
             <Eyebrow>Request a demo</Eyebrow>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1 className="mt-6 font-display text-3xl md:text-4xl text-balance">
+            <PageHeading tone="dark" className="mt-6">
               See GovFaceMatch in your environment.
-            </h1>
+            </PageHeading>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-lg text-grey-on-black">

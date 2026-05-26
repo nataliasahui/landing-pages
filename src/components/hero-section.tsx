@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { PageHeading } from "@/components/ui/page-heading";
 
 const HIGHLIGHTS = [
   {
@@ -198,11 +199,11 @@ export function HeroSection() {
                 </p>
               </Reveal>
               <Reveal delay={0.05} duration={0.35} waitForIntro>
-                <h1 className="mt-4 font-display text-[40px] leading-[1.02] tracking-tight text-white sm:mt-5 sm:text-5xl md:text-6xl lg:text-7xl">
+                <PageHeading tone="dark" className="mt-4 sm:mt-5">
                   AI-Powered
                   <br />
                   Identity Platform
-                </h1>
+                </PageHeading>
               </Reveal>
             </div>
 

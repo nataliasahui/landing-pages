@@ -5,6 +5,7 @@ import { useState, type ReactNode } from "react";
 import { Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { PageHeading } from "@/components/ui/page-heading";
 import { cn } from "@/lib/utils";
 
 type Copy = {
@@ -77,9 +78,7 @@ export function HeroCopy() {
                   : "pointer-events-none absolute inset-0 opacity-0"
               )}
             >
-              <h1 className="font-display text-[33px] md:text-[42px] lg:text-[54px] leading-[1.05] text-balance">
-                {opt.title}
-              </h1>
+              <PageHeading tone="dark">{opt.title}</PageHeading>
               <p className="mt-6 max-w-xl text-lg text-grey-on-black text-balance">
                 {opt.subtitle}
               </p>

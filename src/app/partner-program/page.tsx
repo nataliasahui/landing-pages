@@ -13,6 +13,7 @@ import {
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { PageHeading } from "@/components/ui/page-heading";
 import PartnerEcosystemAnimation from "@/components/partner-ecosystem-animation";
 
 export const metadata: Metadata = {
@@ -172,13 +173,13 @@ function Hero() {
               <Eyebrow tone="light">Partner Program</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
-              <h1 className="mt-6 font-display text-4xl leading-[1.05] text-balance text-black sm:text-5xl md:text-6xl lg:text-[64px]">
+              <PageHeading className="mt-6">
                 Win more.
                 <br />
-                <span className="text-blue">Grow faster.</span>
+                Grow faster.
                 <br />
                 Partner with Incode.
-              </h1>
+              </PageHeading>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-grey-on-white sm:text-lg">
