@@ -15,6 +15,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { PageHeading } from "@/components/ui/page-heading";
 import PartnerEcosystemAnimation from "@/components/partner-ecosystem-animation";
+import { StatsStrip } from "@/components/stats-strip";
 
 export const metadata: Metadata = {
   title: "Partner Program",
@@ -153,7 +154,7 @@ export default function PartnerProgramPage() {
   return (
     <>
       <Hero />
-      <StatsStrip />
+      <StatsStrip stats={STATS} />
       <WhyPartner />
       <PartnerTracks />
       <Quotes />
@@ -205,31 +206,6 @@ function Hero() {
               <PartnerEcosystemAnimation />
             </div>
           </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StatsStrip() {
-  return (
-    <section className="bg-[#FFFFFF]">
-      <div className="mx-auto max-w-[1280px] px-5 py-12 sm:py-16 lg:px-8">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 md:gap-0">
-          {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={0.05 * i}>
-              <div
-                className={`md:px-8 ${
-                  i > 0 ? "md:border-l md:border-border-light" : ""
-                } ${i === 0 ? "md:pl-0" : ""}`}
-              >
-                <div className="bg-[linear-gradient(90deg,#111111_0%,#006AFF_55%,#006AFF_100%)] bg-clip-text font-display text-4xl font-bold leading-[1] tracking-tight text-transparent sm:text-5xl md:text-[56px]">
-                  {s.value}
-                </div>
-                <p className="mt-4 text-[13px] leading-snug text-grey-on-white">{s.label}</p>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>

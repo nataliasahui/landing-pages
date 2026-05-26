@@ -9,6 +9,7 @@ import { IntegrationsMarketplace } from "@/components/integrations-marketplace";
 import PartnerEcosystemAnimation, {
   type EcosystemPartner,
 } from "@/components/partner-ecosystem-animation";
+import { StatsStrip } from "@/components/stats-strip";
 
 const HERO_INTEGRATIONS: EcosystemPartner[] = [
   { name: "Okta Workforce", src: "/logos/okta.svg", maxH: 32 },
@@ -57,7 +58,7 @@ export default function IntegrationsPage() {
   return (
     <>
       <Hero />
-      <StatsAndCategories />
+      <StatsStrip stats={HERO_STATS} />
       <CategoriesGlossary />
       <Marketplace />
       <TechPartnerCta />
@@ -100,33 +101,6 @@ function Hero() {
               <PartnerEcosystemAnimation partners={HERO_INTEGRATIONS} />
             </div>
           </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StatsAndCategories() {
-  return (
-    <section className="bg-[#FFFFFF]">
-      <div className="mx-auto max-w-[1280px] px-5 py-12 sm:py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-3 sm:gap-y-0">
-          {HERO_STATS.map((s, i) => (
-            <Reveal key={s.label} delay={0.05 * i}>
-              <div
-                className={`flex flex-col items-start sm:px-10 ${
-                  i > 0 ? "sm:border-l sm:border-border-light" : ""
-                } ${i === 0 ? "sm:pl-0" : ""}`}
-              >
-                <div className="bg-[linear-gradient(90deg,#111111_0%,#006AFF_55%,#006AFF_100%)] bg-clip-text font-display text-5xl font-bold leading-[1] tracking-tight text-transparent sm:text-6xl md:text-[72px]">
-                  {s.value}
-                </div>
-                <p className="mt-4 text-[13px] leading-snug text-grey-on-white sm:text-[14px]">
-                  {s.label}
-                </p>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>
