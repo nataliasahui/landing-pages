@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useRef, useState } from "react";
 import {
@@ -208,7 +209,20 @@ export function SiteHeader() {
     closeTimer.current = setTimeout(() => setOpenMenu(null), 180);
   };
 
-  const bright = scrolled || openMenu !== null;
+  // Pages with a dark hero start the header in dark-mode (white text on
+  // transparent overlay). Everywhere else, the header is "bright" from page
+  // load so nav text stays legible over light heroes.
+  const pathname = usePathname();
+  const DARK_HERO_ROUTES = new Set([
+    "/",
+    "/contact",
+    "/products/govfacematch",
+    "/resources/privacy-architecture",
+  ]);
+  const hasDarkHero = pathname
+    ? DARK_HERO_ROUTES.has(pathname.replace(/\/$/, "") || "/")
+    : false;
+  const bright = scrolled || openMenu !== null || !hasDarkHero;
 
   return (
     <motion.div
