@@ -68,8 +68,8 @@ export default function IntegrationsPage() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border-light bg-[#FFFFFF]">
-      <div className="relative mx-auto max-w-[1280px] px-5 pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 lg:px-8">
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-border-light bg-[#FFFFFF]">
+      <div className="relative mx-auto w-full max-w-[1280px] px-5 pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:items-center">
           <div>
             <Reveal>

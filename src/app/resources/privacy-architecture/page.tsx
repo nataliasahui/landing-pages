@@ -77,9 +77,9 @@ export default function PrivacyArchitecturePage() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-rich-black text-white">
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-rich-black text-white">
       <div className="absolute inset-0 bg-hero-glow pointer-events-none opacity-60" />
-      <div className="relative mx-auto max-w-[1280px] px-5 pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 lg:px-8">
+      <div className="relative mx-auto w-full max-w-[1280px] px-5 pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:items-center">
           <div>
             <Reveal>

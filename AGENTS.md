@@ -81,6 +81,7 @@ Rules to fill in:
 - Page width cap: `max-w-[1280px]` with `px-5 lg:px-8`
 - Hero vertical rhythm: `pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24`
 - Two-column hero grid: `lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:items-center`
+- **Hero outer section minimum height**: `flex min-h-[100svh] items-center` on every page hero so the hero fills the viewport (about MacBook Pro 13" sized on a 13" display) and content is vertically centered. Use `100svh` (small viewport height) — not `100vh` — to avoid mobile address-bar overflow. The inner container should be `w-full` so it expands to the flex container's width.
 
 Rules to fill in:
 

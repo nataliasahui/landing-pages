@@ -18,8 +18,8 @@ const POINTS = [
 
 export default function ContactPage() {
   return (
-    <Section tone="rich">
-      <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] items-start">
+    <Section tone="rich" className="flex min-h-[100svh] items-center">
+      <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] items-start w-full">
         <div>
           <Reveal>
             <Eyebrow>Request a demo</Eyebrow>
