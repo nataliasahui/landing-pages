@@ -70,7 +70,7 @@ Reuse before you reach for raw HTML:
 - `<ButtonLink>` for any CTA — never style a plain `<a>` as a button
 - `<Reveal>` for scroll-in animations (don't write motion code by hand)
 - `<PageHeading tone?>` for every page hero h1 — never write a raw `<h1>` (see Typography section above)
-- `<StatsStrip stats={...}>` for the "big number + label" strip pattern (Partner Program, Integrations, …). Pass a `Stat[]` — handles the responsive grid (3 vs 4 columns), gradient styling, and per-cell sizing so every strip on the site stays visually identical.
+- `<StatsStrip stats={...}>` for the "big number + label" strip pattern (Partner Program, Integrations, …). Pass a `Stat[]` — handles the responsive grid (3 vs 4 columns), gradient styling, and per-cell sizing so every strip on the site stays visually identical. Section height is locked to `min-h-[280px]` on desktop with content vertically centered.
 
 Rules to fill in:
 

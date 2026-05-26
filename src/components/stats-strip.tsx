@@ -14,8 +14,8 @@ export function StatsStrip({ stats }: { stats: Stat[] }) {
   const gridCols = GRID_BY_COUNT[stats.length] ?? "sm:grid-cols-3";
 
   return (
-    <section className="bg-[#FFFFFF]">
-      <div className="mx-auto max-w-[1280px] px-5 py-12 sm:py-16 lg:px-8">
+    <section className="flex min-h-[280px] items-center bg-[#FFFFFF]">
+      <div className="mx-auto w-full max-w-[1280px] px-5 py-12 sm:py-0 lg:px-8">
         <div className={cn("grid grid-cols-1 gap-y-10 sm:gap-y-0", gridCols)}>
           {stats.map((s, i) => (
             <Reveal
