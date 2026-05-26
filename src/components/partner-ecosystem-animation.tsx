@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-type Partner = { name: string; src: string; maxH: number };
+export type EcosystemPartner = { name: string; src: string; maxH: number };
 
-const PARTNERS: Partner[] = [
+const DEFAULT_PARTNERS: EcosystemPartner[] = [
   { name: "Experian", src: "/logos/experian.svg", maxH: 50 },
   { name: "Equifax", src: "/logos/equifax.svg", maxH: 34 },
   { name: "TransUnion", src: "/logos/transunion.svg", maxH: 42 },
@@ -19,7 +19,11 @@ const PARTNERS: Partner[] = [
 
 const ROTATION_MS = 2500;
 
-export default function PartnerEcosystemAnimation() {
+export default function PartnerEcosystemAnimation({
+  partners = DEFAULT_PARTNERS,
+}: {
+  partners?: EcosystemPartner[];
+} = {}) {
   const [state, setState] = useState<{ current: number; prev: number | null }>({
     current: 0,
     prev: null,
@@ -28,15 +32,15 @@ export default function PartnerEcosystemAnimation() {
   useEffect(() => {
     const id = window.setInterval(() => {
       setState((s) => ({
-        current: (s.current + 1) % PARTNERS.length,
+        current: (s.current + 1) % partners.length,
         prev: s.current,
       }));
     }, ROTATION_MS);
     return () => window.clearInterval(id);
-  }, []);
+  }, [partners.length]);
 
-  const current = PARTNERS[state.current];
-  const prev = state.prev !== null ? PARTNERS[state.prev] : null;
+  const current = partners[state.current];
+  const prev = state.prev !== null ? partners[state.prev] : null;
 
   return (
     <div className="pea-fade-in mx-auto flex w-full max-w-[360px] flex-col items-stretch">

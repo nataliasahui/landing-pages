@@ -1,11 +1,26 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ArrowUpRight, BadgeCheck, Code2, Compass, Settings2, Star } from "lucide-react";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { CATEGORIES } from "@/components/integrations-data";
 import { IntegrationsMarketplace } from "@/components/integrations-marketplace";
+import PartnerEcosystemAnimation, {
+  type EcosystemPartner,
+} from "@/components/partner-ecosystem-animation";
+
+const HERO_INTEGRATIONS: EcosystemPartner[] = [
+  { name: "Okta Workforce", src: "/logos/okta.svg", maxH: 32 },
+  { name: "Microsoft Entra", src: "/logos/microsoft.svg", maxH: 30 },
+  { name: "Auth0", src: "/logos/auth0-2.svg", maxH: 38 },
+  { name: "Ping Identity", src: "/logos/ping-identity.svg", maxH: 32 },
+  { name: "SailPoint", src: "/logos/sailpoint-2.svg", maxH: 32 },
+  { name: "ServiceNow", src: "/logos/servicenow-2.svg", maxH: 30 },
+  { name: "Slack", src: "/logos/slack.svg", maxH: 36 },
+  { name: "Zoom", src: "/logos/zoom.svg", maxH: 30 },
+  { name: "Workday", src: "/logos/workday-2.svg", maxH: 36 },
+  { name: "Salesforce", src: "/logos/salesforce-2.svg", maxH: 40 },
+];
 
 export const metadata: Metadata = {
   title: "Integrations",
@@ -82,14 +97,7 @@ function Hero() {
 
           <Reveal delay={0.2}>
             <div className="relative mx-auto w-full max-w-[440px]">
-              <Image
-                src="/Illustration/hero%202.png"
-                alt="Pre-built integrations slot into your existing platforms"
-                width={660}
-                height={826}
-                priority
-                className="h-auto w-full select-none"
-              />
+              <PartnerEcosystemAnimation partners={HERO_INTEGRATIONS} />
             </div>
           </Reveal>
         </div>
