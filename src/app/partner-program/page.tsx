@@ -298,8 +298,8 @@ function PartnerTracks() {
               <h3 className="font-display text-xl leading-tight text-black md:text-2xl">
                 {t.name}
               </h3>
-              <p className="text-[13px] font-medium text-blue">{t.icp}</p>
-              <p className="flex-1 text-[14px] leading-relaxed text-grey-on-white">{t.body}</p>
+              <p className="text-[13px] font-medium text-black">{t.icp}</p>
+              <p className="flex-1 text-[13px] leading-relaxed text-grey-on-white">{t.body}</p>
               <ButtonLink href="#join" size="sm" className="self-start">
                 Apply now
                 <ArrowUpRight size={14} strokeWidth={2.25} />
