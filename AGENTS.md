@@ -24,6 +24,7 @@ Rules to fill in (replace placeholders with your specifics):
 - [ ] Icon containers must use `bg-blue-100` with the icon color set to `text-blue`
 - [ ] Section backgrounds: `bg-background` (default), `bg-off-white` (alternating), `bg-black` (dark sections — text must be `text-white` or `text-grey-on-black`)
 - [ ] Borders never use raw hex — use `border-border-light` (light bg) or `border-border-dark` (dark bg)
+- [ ] **Navigation text is always full-opacity** — `text-black` on light bg, `text-white` on dark bg. Hover state adds a subtle background tint (`hover:bg-black/[0.04]` light, `hover:bg-white/[0.08]` dark) but never changes the text opacity. No `/80` or `/85` faded states for nav links.
 - [ ] [ADD MORE COLOR RULES HERE]
 
 ## Typography

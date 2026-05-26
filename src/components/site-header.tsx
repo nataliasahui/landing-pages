@@ -252,9 +252,9 @@ export function SiteHeader() {
                   className={cn(
                     "group/nav relative inline-flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-[13.5px] font-medium transition-colors duration-200",
                     bright
-                      ? "text-foreground/80 hover:text-foreground hover:bg-foreground/[0.04]"
-                      : "text-white/85 hover:text-white hover:bg-white/[0.08]",
-                    isOpen && (bright ? "text-foreground bg-foreground/[0.04]" : "text-white bg-white/[0.08]"),
+                      ? "text-black hover:bg-black/[0.04]"
+                      : "text-white hover:bg-white/[0.08]",
+                    isOpen && (bright ? "bg-black/[0.04]" : "bg-white/[0.08]"),
                   )}
                 >
                   {item.label}
@@ -264,7 +264,7 @@ export function SiteHeader() {
                       strokeWidth={2.5}
                       className={cn(
                         "transition-transform duration-200 ease-out",
-                        bright ? "text-foreground/40" : "text-white/50",
+                        bright ? "text-black/60" : "text-white/70",
                         isOpen && "rotate-180",
                       )}
                     />
@@ -344,13 +344,13 @@ export function SiteHeader() {
                       <button
                         type="button"
                         onClick={() => setMobileExpanded(expanded ? null : item.label)}
-                        className="flex w-full items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/85 hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
+                        className="flex w-full items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-black hover:bg-black/[0.04] transition-colors"
                       >
                         {item.label}
                         <ChevronDown
                           size={14}
                           className={cn(
-                            "text-foreground/40 transition-transform duration-200",
+                            "text-black/60 transition-transform duration-200",
                             expanded && "rotate-180",
                           )}
                         />
@@ -373,7 +373,7 @@ export function SiteHeader() {
                                         setMobileOpen(false);
                                         setMobileExpanded(null);
                                       }}
-                                      className="flex items-center gap-3 rounded-lg px-2 py-2 text-[14px] text-foreground/80 hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
+                                      className="flex items-center gap-3 rounded-lg px-2 py-2 text-[14px] text-black hover:bg-black/[0.04] transition-colors"
                                     >
                                       <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border-light/70 bg-off-white/70 text-foreground/70">
                                         <Icon size={14} strokeWidth={1.75} />
@@ -395,10 +395,10 @@ export function SiteHeader() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/85 hover:bg-foreground/[0.04] hover:text-foreground transition-colors"
+                    className="flex items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-black hover:bg-black/[0.04] transition-colors"
                   >
                     {item.label}
-                    {item.hasMenu && <ChevronDown size={14} className="text-foreground/40" />}
+                    {item.hasMenu && <ChevronDown size={14} className="text-black/60" />}
                   </a>
                 );
               })}
