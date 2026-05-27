@@ -356,7 +356,7 @@ function Questions() {
           Your questions, answered.
         </h2>
       </Reveal>
-      <div className="mt-12 mx-auto max-w-3xl space-y-3">
+      <div className="mt-12 max-w-3xl space-y-3">
         {FAQ.map((item, i) => (
           <Reveal key={item.q} delay={0.04 * i}>
             <details className="group rounded-2xl border border-border-light bg-background open:bg-white open:shadow-[0_12px_28px_-22px_rgba(10,15,30,0.18)] transition-all">
