@@ -17,6 +17,7 @@ import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { PageHeading } from "@/components/ui/page-heading";
+import { StepsExplainer, type ExplainerStep } from "@/components/steps-explainer";
 
 export const metadata: Metadata = {
   title: "On-device Face Age Estimation",
@@ -47,25 +48,29 @@ const PROMISES: Array<{ icon: LucideIcon; title: string; body: string }> = [
   },
 ];
 
-const STEPS: Array<{ icon: LucideIcon; title: string; body: string }> = [
+const STEPS: ExplainerStep[] = [
   {
-    icon: ShieldCheck,
+    icon: <ShieldCheck size={13} strokeWidth={1.75} />,
     title: "Start the check",
+    subtitle: "Triggered the moment you reach age-gated content or services.",
     body: "When you access age-restricted content or services, you'll be asked to complete a quick age verification.",
   },
   {
-    icon: Camera,
+    icon: <Camera size={13} strokeWidth={1.75} />,
     title: "A quick selfie scan",
+    subtitle: "Your camera activates for just a few seconds.",
     body: "Your camera briefly activates and the age estimation runs directly on your device. The process is automatic and takes only a few seconds.",
   },
   {
-    icon: Cpu,
+    icon: <Cpu size={13} strokeWidth={1.75} />,
     title: "Age is estimated on your phone",
+    subtitle: "Nothing is uploaded — your device does the work.",
     body: "The estimation happens entirely on your phone. Nothing is uploaded or sent anywhere — your device does all the work and the result is instant.",
   },
   {
-    icon: CheckCircle,
+    icon: <CheckCircle size={13} strokeWidth={1.75} />,
     title: "Access is confirmed",
+    subtitle: "A yes/no result against the age threshold — never your actual age.",
     body: "If you meet the required age threshold, access is granted. Importantly, your actual estimated age is never shared — the system only returns a yes or no against the age threshold. No one learns how old you appear to be, only that you qualify.",
   },
 ];
@@ -272,43 +277,11 @@ function HowItWorks() {
         </Reveal>
       </div>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-10 lg:items-stretch md:mt-16">
-        <Reveal delay={0.3}>
-          <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] lg:aspect-auto lg:h-full lg:min-h-[560px]">
-            <div className="flex h-full w-full items-center justify-center">
-              <span className="font-display text-xl font-medium tracking-tight text-white/30 sm:text-2xl">
-                Visual coming soon
-              </span>
-            </div>
-          </div>
-        </Reveal>
-
-        <div className="flex flex-col gap-4">
-          {STEPS.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <Reveal key={s.title} delay={0.05 * i}>
-                <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.06]">
-                      <Icon size={14} strokeWidth={1.75} className="text-white" />
-                    </span>
-                    <span className="font-display text-[11px] font-medium tracking-wider text-white/40 uppercase">
-                      Step {i + 1}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-[16px] leading-tight text-white">
-                    {s.title}
-                  </h3>
-                  <p className="text-[13px] leading-relaxed text-white/70">
-                    {s.body}
-                  </p>
-                </div>
-              </Reveal>
-            );
-          })}
+      <Reveal delay={0.3}>
+        <div className="mt-12 md:mt-16">
+          <StepsExplainer steps={STEPS} />
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }
