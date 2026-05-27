@@ -353,7 +353,7 @@ function Outro() {
           <Eyebrow>Privacy by design</Eyebrow>
         </Reveal>
         <Reveal delay={0.1}>
-          <PageHeading tone="dark" className="mt-6">
+          <PageHeading as="h2" tone="dark" className="mt-6">
             Age estimation powered by Incode. Privacy-preserving by
             architecture — not by policy.
           </PageHeading>

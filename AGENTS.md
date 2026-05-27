@@ -49,7 +49,13 @@ import { PageHeading } from "@/components/ui/page-heading";
 
 // Dark background
 <PageHeading tone="dark" className="mt-6">Page title goes here.</PageHeading>
+
+// Second big heading on the page (closing CTA, Outro, etc.) — same
+// visual treatment, but rendered as <h2> so the page keeps a single h1.
+<PageHeading as="h2" tone="dark">Section heading.</PageHeading>
 ```
+
+**Keep exactly one `<h1>` per page** — every page hero should use the default `as="h1"` once. Any other big heading on the same page (closing CTAs, sign-offs, etc.) should use `as="h2"` to preserve document outline / SEO.
 
 The component locks in the canonical title spec:
 - Font: `font-display`
