@@ -27,6 +27,7 @@ Rules to fill in (replace placeholders with your specifics):
 - [ ] **Navigation text is always full-opacity** — `text-black` on light bg, `text-white` on dark bg. Hover state adds a subtle background tint (`hover:bg-black/[0.04]` light, `hover:bg-white/[0.08]` dark) but never changes the text opacity. No `/80` or `/85` faded states for nav links.
 - [ ] **When adding a page with a dark hero**, register its route in the `DARK_HERO_ROUTES` set in `src/components/site-header.tsx`. Otherwise the header will render in light mode and the nav text will be invisible against the dark hero. Default (route not listed) = light hero = bright nav.
 - [ ] **The last CTA / closing section on every page is dark.** Use `<Section tone="rich">` (or the equivalent `bg-rich-black text-white` pattern) so the page ends on a high-contrast dark surface. Ghost buttons (`text-foreground`) won't read against it — use `variant="outline-white"` for secondary CTAs on dark.
+- [ ] **The site footer (`SiteFooter`) is always dark** — `bg-rich-black text-white`, link copy `text-grey-on-black hover:text-white`, dividers `border-white/10`. The Logo gets `[filter:brightness(0)_invert(1)]` to render white. Footer styling does not vary by page.
 - [ ] [ADD MORE COLOR RULES HERE]
 
 ## Typography

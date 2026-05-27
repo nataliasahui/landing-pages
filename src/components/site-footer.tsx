@@ -81,12 +81,12 @@ const LEGAL = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative bg-[#F9F9F9] text-foreground overflow-hidden">
+    <footer className="relative bg-rich-black text-white overflow-hidden">
       <div className="relative mx-auto max-w-[1280px] px-5 py-12 sm:py-14 md:py-16 lg:px-8">
         <div className="grid gap-8 sm:gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_repeat(6,1fr)]">
           <div>
-            <Logo className="text-foreground" />
-            <address className="not-italic mt-6 text-sm text-grey-on-white leading-relaxed">
+            <Logo className="[filter:brightness(0)_invert(1)]" />
+            <address className="not-italic mt-6 text-sm text-grey-on-black leading-relaxed">
               Incode Technologies, Inc.
               <br />
               101 Mission St, Suite 900,
@@ -98,7 +98,7 @@ export function SiteFooter() {
           </div>
           {COLS.map((col) => (
             <div key={col.title}>
-              <div className="text-sm font-medium text-foreground mb-3">
+              <div className="text-sm font-medium text-white mb-3">
                 {col.title}
               </div>
               <ul className="space-y-2">
@@ -106,7 +106,7 @@ export function SiteFooter() {
                   <li key={label}>
                     <Link
                       href="#"
-                      className="text-sm text-grey-on-white hover:text-blue transition-colors"
+                      className="text-sm text-grey-on-black hover:text-white transition-colors"
                     >
                       {label}
                     </Link>
@@ -117,22 +117,22 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-10 border-t border-border-light pt-6 sm:mt-12 sm:pt-8">
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-grey-on-white">
+        <div className="mt-10 border-t border-white/10 pt-6 sm:mt-12 sm:pt-8">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-grey-on-black">
             {LEGAL.map((l) => (
               <li key={l}>
-                <Link href="#" className="hover:text-foreground transition-colors">
+                <Link href="#" className="hover:text-white transition-colors">
                   {l}
                 </Link>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-xs text-grey-on-white max-w-3xl">
+          <p className="mt-6 text-xs text-grey-on-black max-w-3xl">
             Incode Technologies has been certified to be SOC 2 Type ii Compliant. Incode Technologies uses 256-bit TLS encryption
           </p>
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-4 text-xs text-grey-on-white">
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-4 text-xs text-grey-on-black">
             <p>© Incode Technologies Inc. All rights reserved. Incode Trademark</p>
-            <span className="inline-flex items-center gap-2 rounded-md border border-border-light px-2.5 py-1">
+            <span className="inline-flex items-center gap-2 rounded-md border border-white/15 px-2.5 py-1">
               United States (ENG)
             </span>
           </div>
