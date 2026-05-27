@@ -17,6 +17,10 @@ out/
 build/
 next-env.d.ts
 
+# local static-export deploy artifacts (rebuilt each deploy, not source)
+share/
+stage/
+
 # production
 *.tsbuildinfo
 
