@@ -350,12 +350,15 @@ function Outro() {
     <Section tone="rich">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="font-display text-2xl leading-tight text-balance text-white md:text-3xl">
-            Age estimation powered by Incode. Privacy-preserving by
-            architecture — not by policy.
-          </p>
+          <Eyebrow>Privacy by design</Eyebrow>
         </Reveal>
         <Reveal delay={0.1}>
+          <PageHeading tone="dark" className="mt-6">
+            Age estimation powered by Incode. Privacy-preserving by
+            architecture — not by policy.
+          </PageHeading>
+        </Reveal>
+        <Reveal delay={0.2}>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <ButtonLink
               href="https://trust.incode.com/?product=incodetechnologies"
