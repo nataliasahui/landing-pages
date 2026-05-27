@@ -30,17 +30,17 @@ export function StepsExplainer({ steps }: { steps: ExplainerStep[] }) {
                 aria-expanded={isActive}
                 onClick={() => setActive(i)}
                 className={cn(
-                  "group flex w-full items-start gap-3 border-l-2 py-4 pl-5 pr-3 text-left transition-colors",
+                  "group flex w-full gap-3 border-l-2 py-4 pl-5 pr-3 text-left transition-colors",
                   isActive
-                    ? "border-l-blue text-white"
-                    : "border-l-white/10 text-white/55 hover:border-l-white/30 hover:text-white/85",
+                    ? "items-start border-l-blue text-white"
+                    : "items-center border-l-white/10 text-white/55 hover:border-l-white/30 hover:text-white/85",
                 )}
               >
                 <span
                   className={cn(
-                    "mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors",
+                    "flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors",
                     isActive
-                      ? "border-white/40 bg-white/[0.06] text-white"
+                      ? "mt-0.5 border-white/40 bg-white/[0.06] text-white"
                       : "border-white/15 text-white/55 group-hover:text-white/85",
                   )}
                 >
