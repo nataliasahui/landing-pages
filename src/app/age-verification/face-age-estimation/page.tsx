@@ -272,40 +272,42 @@ function HowItWorks() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.3}>
-        <div className="mt-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] md:mt-16">
-          <div className="flex h-full w-full items-center justify-center">
-            <span className="font-display text-xl font-medium tracking-tight text-white/30 sm:text-2xl">
-              Visual coming soon
-            </span>
+      <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-10 lg:items-stretch md:mt-16">
+        <Reveal delay={0.3}>
+          <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] lg:aspect-auto lg:h-full lg:min-h-[560px]">
+            <div className="flex h-full w-full items-center justify-center">
+              <span className="font-display text-xl font-medium tracking-tight text-white/30 sm:text-2xl">
+                Visual coming soon
+              </span>
+            </div>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
 
-      <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {STEPS.map((s, i) => {
-          const Icon = s.icon;
-          return (
-            <Reveal key={s.title} delay={0.05 * i}>
-              <div className="flex h-full flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                <div className="flex items-center justify-between">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.06]">
-                    <Icon size={16} strokeWidth={1.75} className="text-white" />
-                  </span>
-                  <span className="font-display text-[11px] font-medium tracking-wider text-white/40 uppercase">
-                    Step {i + 1}
-                  </span>
+        <div className="flex flex-col gap-4">
+          {STEPS.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <Reveal key={s.title} delay={0.05 * i}>
+                <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.06]">
+                      <Icon size={14} strokeWidth={1.75} className="text-white" />
+                    </span>
+                    <span className="font-display text-[11px] font-medium tracking-wider text-white/40 uppercase">
+                      Step {i + 1}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-[16px] leading-tight text-white">
+                    {s.title}
+                  </h3>
+                  <p className="text-[13px] leading-relaxed text-white/70">
+                    {s.body}
+                  </p>
                 </div>
-                <h3 className="font-display text-[17px] leading-tight text-white md:text-lg">
-                  {s.title}
-                </h3>
-                <p className="text-[13px] leading-relaxed text-white/70">
-                  {s.body}
-                </p>
-              </div>
-            </Reveal>
-          );
-        })}
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
     </Section>
   );
