@@ -68,7 +68,7 @@ export function StepsExplainer({ steps }: { steps: ExplainerStep[] }) {
       </ul>
 
       {/* Visual */}
-      <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] lg:aspect-[5/6]">
+      <div className="aspect-[8/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] lg:aspect-[5/3]">
         {current.image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
