@@ -170,20 +170,21 @@ export default function FaceAgeEstimationPage() {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-border-light bg-[#FFFFFF]">
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-rich-black text-white">
+      <div className="absolute inset-0 bg-hero-glow pointer-events-none opacity-60" />
       <div className="relative mx-auto w-full max-w-[1280px] px-5 pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-40 md:pb-24 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:items-center">
           <div>
             <Reveal>
-              <Eyebrow tone="light">Age Verification</Eyebrow>
+              <Eyebrow>Age Verification</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
-              <PageHeading className="mt-6">
+              <PageHeading tone="dark" className="mt-6">
                 Your face never leaves your device.
               </PageHeading>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mt-6 max-w-md text-[17px] leading-relaxed text-grey-on-white sm:text-lg">
+              <p className="mt-6 max-w-md text-[17px] leading-relaxed text-white/85 sm:text-lg">
                 Never stored. Never shared. Never seen.
               </p>
             </Reveal>

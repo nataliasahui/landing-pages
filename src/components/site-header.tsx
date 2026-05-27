@@ -218,6 +218,7 @@ export function SiteHeader() {
     "/contact",
     "/products/govfacematch",
     "/resources/privacy-architecture",
+    "/age-verification/face-age-estimation",
   ]);
   const hasDarkHero = pathname
     ? DARK_HERO_ROUTES.has(pathname.replace(/\/$/, "") || "/")
