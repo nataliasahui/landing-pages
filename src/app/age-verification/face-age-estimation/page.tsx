@@ -381,10 +381,10 @@ function Questions() {
 
 function Outro() {
   return (
-    <Section tone="light">
+    <Section tone="rich">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="font-display text-2xl leading-tight text-balance text-black md:text-3xl">
+          <p className="font-display text-2xl leading-tight text-balance text-white md:text-3xl">
             Age estimation powered by Incode. Privacy-preserving by
             architecture — not by policy.
           </p>
@@ -400,7 +400,7 @@ function Outro() {
             </ButtonLink>
             <ButtonLink
               href="https://www.incode.com/use-cases/age-verification"
-              variant="ghost"
+              variant="outline-white"
               size="sm"
             >
               Learn more about age verification
