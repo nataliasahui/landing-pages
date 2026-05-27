@@ -254,29 +254,49 @@ function HowItWorks() {
       tone="rich"
       className="border-b border-border-dark"
     >
-      <Reveal>
-        <Eyebrow>How it works</Eyebrow>
+      <div className="mx-auto max-w-3xl text-center">
+        <Reveal>
+          <Eyebrow>How it works</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <h2 className="mt-5 font-display text-3xl leading-tight text-balance text-white sm:text-4xl md:text-[44px]">
+            Four steps. Seconds long. Nothing leaves your phone.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <p className="mt-6 text-[15px] leading-relaxed text-balance text-white/70 sm:text-base">
+            From the moment you start the check to the moment access is
+            granted, your face is processed entirely on your device. No
+            uploads, no servers, no exceptions.
+          </p>
+        </Reveal>
+      </div>
+
+      <Reveal delay={0.3}>
+        <div className="mt-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] md:mt-16">
+          <div className="flex h-full w-full items-center justify-center">
+            <span className="font-display text-xl font-medium tracking-tight text-white/30 sm:text-2xl">
+              Visual coming soon
+            </span>
+          </div>
+        </div>
       </Reveal>
-      <Reveal delay={0.1}>
-        <h2 className="mt-5 font-display text-3xl leading-tight text-balance text-white sm:text-4xl">
-          Four steps. Seconds long. Nothing leaves your phone.
-        </h2>
-      </Reveal>
-      <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+
+      <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {STEPS.map((s, i) => {
           const Icon = s.icon;
           return (
             <Reveal key={s.title} delay={0.05 * i}>
-              <div className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-7">
-                <div className="flex items-center gap-3">
-                  <span className="font-display text-[13px] font-medium tracking-wider text-white/60 uppercase">
+              <div className="flex h-full flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+                <div className="flex items-center justify-between">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.06]">
+                    <Icon size={16} strokeWidth={1.75} className="text-white" />
+                  </span>
+                  <span className="font-display text-[11px] font-medium tracking-wider text-white/40 uppercase">
                     Step {i + 1}
                   </span>
                 </div>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.06]">
-                  <Icon size={20} strokeWidth={1.75} className="text-white" />
-                </span>
-                <h3 className="font-display text-xl leading-tight text-white">
+                <h3 className="font-display text-[17px] leading-tight text-white md:text-lg">
                   {s.title}
                 </h3>
                 <p className="text-[13px] leading-relaxed text-white/70">
