@@ -1,5 +1,5 @@
-:HL["/govfacematch/_next/static/chunks/0pemsitpmxk14.css","style"]
-:HL["/govfacematch/_next/static/media/0dc02305a3505331-s.p.045lmq4bb63op.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/govfacematch/_next/static/media/5c285b27cdda1fe8-s.p.0yo6-5yoeeudq.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/ricardo-amper.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"resources","param":null,"prefetchHints":0,"slots":{"children":{"name":"privacy-architecture","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"_zQIk2KksChra7_0_qMCx"}
+:HL["/landing-pages/_next/static/chunks/0_innros1oojl.css","style"]
+:HL["/landing-pages/_next/static/media/0dc02305a3505331-s.p.045lmq4bb63op.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/landing-pages/_next/static/media/5c285b27cdda1fe8-s.p.0yo6-5yoeeudq.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/landing-pages/ricardo-amper.png","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"resources","param":null,"prefetchHints":0,"slots":{"children":{"name":"privacy-architecture","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"fApuSEC3ltEFZhfCCh39-"}
