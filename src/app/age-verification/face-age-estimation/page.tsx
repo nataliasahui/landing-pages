@@ -246,7 +246,7 @@ function HowItWorks() {
       tone="rich"
       className="border-b border-border-dark"
     >
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="max-w-3xl">
         <Reveal>
           <Eyebrow>How it works</Eyebrow>
         </Reveal>
@@ -256,7 +256,7 @@ function HowItWorks() {
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mt-6 text-[15px] leading-relaxed text-balance text-white/70 sm:text-base">
+          <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/70 sm:text-base">
             From the moment you start the check to the moment access is
             granted, your face is processed entirely on your device. No
             uploads, no servers, no exceptions.
