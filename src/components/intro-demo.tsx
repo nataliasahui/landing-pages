@@ -1,25 +1,25 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { IdCard, ScanFace, ShieldCheck } from "lucide-react";
+import { useEffect, useRef, type ReactNode } from "react";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { cn } from "@/lib/utils";
 
 const PLAYBACK_RATE = 1.75;
 const VIDEO_ASPECT = "1000 / 914";
 
-const STEPS = [
+const STEPS: Array<{ icon: ReactNode; title: string; body: string }> = [
   {
-    icon: IdCard,
+    icon: <DsIcon src="/icons/id.svg" className="h-4 w-4 bg-current" />,
     title: "ID barcode scan + selfie",
     body: "Users scan the back of their government ID and take a live selfie in two simple guided steps.",
   },
   {
-    icon: ScanFace,
+    icon: <DsIcon src="/icons/face-capture.svg" className="h-4 w-4 bg-current" />,
     title: "Verify against DMV records",
     body: "The selfie is matched to the issuing DMV's official record within a secure environment.",
   },
   {
-    icon: ShieldCheck,
+    icon: <DsIcon src="/icons/shield.svg" className="h-4 w-4 bg-current" />,
     title: "Real-time result",
     body: "A verification result is returned instantly, delivering a fast, defensible, and auditable outcome.",
   },
@@ -72,7 +72,6 @@ export function IntroDemo() {
 
       <div className="flex flex-col">
         {STEPS.map((step, i) => {
-          const Icon = step.icon;
           return (
             <div
               key={step.title}
@@ -80,7 +79,7 @@ export function IntroDemo() {
             >
               <div className="flex items-start gap-4">
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-blue/25 bg-blue-100 text-blue shrink-0">
-                  <Icon size={16} />
+                  {step.icon}
                 </span>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display text-base md:text-lg text-black">

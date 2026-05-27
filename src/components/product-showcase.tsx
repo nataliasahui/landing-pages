@@ -1,20 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import {
-  Cpu,
-  Landmark,
-  Network,
-  Zap,
-  type LucideIcon,
-} from "lucide-react";
+import { useEffect, useRef, type ReactNode } from "react";
 import Image from "next/image";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { Eyebrow } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 
 type Highlight = {
   id: string;
-  icon: LucideIcon;
+  icon: ReactNode;
   title: string;
   intro: string;
   points: string[];
@@ -23,7 +17,7 @@ type Highlight = {
 const HIGHLIGHTS: Highlight[] = [
   {
     id: "ai",
-    icon: Cpu,
+    icon: <DsIcon src="/icons/uxv2.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "AI that adapts faster than fraud",
     intro: "Real-time adaptation to evolving fraud.",
     points: [
@@ -34,7 +28,7 @@ const HIGHLIGHTS: Highlight[] = [
   },
   {
     id: "gov-backed",
-    icon: Landmark,
+    icon: <DsIcon src="/icons/bank.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Government-backed verification",
     intro: "Deterministic verification.",
     points: [
@@ -45,7 +39,7 @@ const HIGHLIGHTS: Highlight[] = [
   },
   {
     id: "ux",
-    icon: Zap,
+    icon: <DsIcon src="/icons/stopwatch.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Frictionless UX",
     intro: "Low-friction user experience.",
     points: [
@@ -56,7 +50,7 @@ const HIGHLIGHTS: Highlight[] = [
   },
   {
     id: "network",
-    icon: Network,
+    icon: <DsIcon src="/icons/network.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Self-learning intelligence network",
     intro: "Network-powered fraud intelligence.",
     points: [
@@ -70,7 +64,6 @@ const HIGHLIGHTS: Highlight[] = [
 function HighlightCard({ highlight }: { highlight: Highlight }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const articleRef = useRef<HTMLElement | null>(null);
-  const Icon = highlight.icon;
 
   const onEnter = () => {
     const v = videoRef.current;
@@ -134,12 +127,7 @@ function HighlightCard({ highlight }: { highlight: Highlight }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-5 md:p-6">
-        <Icon
-          size={18}
-          strokeWidth={1.75}
-          className="text-blue"
-          aria-hidden
-        />
+        {highlight.icon}
         <h3 className="mt-3 font-display text-lg leading-tight text-black md:text-xl">
           {highlight.title}
         </h3>

@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
-import {
-  ArrowUpRight,
-  BadgeCheck,
-  Lock,
-  Network,
-  ShieldCheck,
-  ShieldHalf,
-  ShieldOff,
-  Sparkles,
-  UserX,
-  Zap,
-} from "lucide-react";
+import type { ReactNode } from "react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { Counter } from "@/components/ui/counter";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { HeroVideo } from "@/components/hero-video";
 import { HeroCopy } from "@/components/hero-copy";
 import { IntroDemo } from "@/components/intro-demo";
@@ -57,29 +48,29 @@ const REALITY_STATS: Array<{
   },
 ];
 
-const BENEFITS = [
+const BENEFITS: Array<{ icon: ReactNode; title: string; body: string }> = [
   {
-    icon: Sparkles,
+    icon: <DsIcon src="/icons/star.svg" className="mt-0.5 h-[18px] w-[18px] shrink-0 bg-blue" />,
     title: "Lower user friction",
     body: "Complete verification with a barcode scan and selfie. No document capture required.",
   },
   {
-    icon: ShieldHalf,
+    icon: <DsIcon src="/icons/shield.svg" className="mt-0.5 h-[18px] w-[18px] shrink-0 bg-blue" />,
     title: "Stronger protection",
     body: "Verify the person, not just the data. Stops synthetic identities and AI-assisted fraud that bypass traditional checks.",
   },
   {
-    icon: Lock,
+    icon: <DsIcon src="/icons/lock.svg" className="mt-0.5 h-[18px] w-[18px] shrink-0 bg-blue" />,
     title: "Built-in privacy",
     body: "Matching occurs within the DMV’s secure environment. No biometric data is stored and no government PII is shared.",
   },
 ];
 
-const WHY_TILES = [
-  { icon: Network, label: "Direct integrations with state DMVs" },
-  { icon: Zap, label: "Real-time verification at the source" },
-  { icon: ShieldCheck, label: "Matching occurs within secure DMV systems" },
-  { icon: BadgeCheck, label: "Deterministic confirmation from the issuing authority" },
+const WHY_TILES: Array<{ icon: ReactNode; label: string }> = [
+  { icon: <DsIcon src="/icons/network.svg" className="h-5 w-5 bg-blue" />, label: "Direct integrations with state DMVs" },
+  { icon: <DsIcon src="/icons/stopwatch.svg" className="h-5 w-5 bg-blue" />, label: "Real-time verification at the source" },
+  { icon: <DsIcon src="/icons/shield.svg" className="h-5 w-5 bg-blue" />, label: "Matching occurs within secure DMV systems" },
+  { icon: <DsIcon src="/icons/check.svg" className="h-5 w-5 bg-blue" />, label: "Deterministic confirmation from the issuing authority" },
 ];
 
 export default function GovFaceMatchPage() {
@@ -188,15 +179,15 @@ function Testimonial() {
 }
 
 function Problem() {
-  const cards = [
+  const cards: Array<{ icon: ReactNode; tag: string; title: string; body: string }> = [
     {
-      icon: UserX,
+      icon: <DsIcon src="/icons/user.svg" className="h-[18px] w-[18px] bg-current" />,
       tag: "Impacts conversion",
       title: "Document-based verification",
       body: "Catches more fraud, but adds friction that drives users away. Up to 40% never complete the process.",
     },
     {
-      icon: ShieldOff,
+      icon: <DsIcon src="/icons/shield.svg" className="h-[18px] w-[18px] bg-current" />,
       tag: "Weakens fraud prevention",
       title: "Non-document verification",
       body: "Keeps users moving, but allows synthetic and stolen identities to pass undetected.",
@@ -221,13 +212,12 @@ function Problem() {
         </div>
         <div className="mt-14 grid gap-4 md:grid-cols-2">
           {cards.map((c, i) => {
-            const Icon = c.icon;
             return (
               <Reveal key={c.title} delay={0.1 + i * 0.1}>
                 <div className="h-full rounded-xl border border-red-500/15 bg-off-black/80 backdrop-blur p-6 md:p-8 transition-colors hover:border-red-500/30">
                   <div className="flex items-start gap-4">
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-red-500/25 bg-red-500/10 text-red-400 shrink-0">
-                      <Icon size={18} />
+                      {c.icon}
                     </span>
                     <div className="flex-1">
                       <span className="inline-flex items-center rounded-full border border-red-500/25 bg-red-500/10 px-2.5 py-0.5 text-[11px] font-medium text-red-300">
@@ -342,11 +332,10 @@ function WhatChanges() {
 
           <ul className="mt-12 flex max-w-md flex-col gap-7">
             {BENEFITS.map((b, i) => {
-              const Icon = b.icon;
               return (
                 <Reveal key={b.title} delay={0.3 + i * 0.08}>
                   <li className="flex gap-3">
-                    <Icon size={18} strokeWidth={2} className="mt-0.5 shrink-0 text-blue" />
+                    {b.icon}
                     <div>
                       <h3 className="font-display text-lg leading-snug">{b.title}</h3>
                       <p className="mt-1.5 text-sm leading-relaxed text-grey-on-white">{b.body}</p>
@@ -408,12 +397,11 @@ function WhyIncode() {
       </Reveal>
       <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {WHY_TILES.map((t, i) => {
-          const Icon = t.icon;
           return (
             <Reveal key={t.label} delay={0.05 * i}>
               <div className="h-full rounded-xl border border-border-light bg-background p-6">
                 <div className="flex items-center justify-between">
-                  <Icon size={20} strokeWidth={2} className="text-blue" />
+                  {t.icon}
                   <span className="font-display text-sm text-grey-on-white tabular-nums">
                     0{i + 1}
                   </span>

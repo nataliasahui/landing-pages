@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Incode — Landing Pages for Review</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+    background: #f7f8fa;
+    color: #1a1a1a;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+  }
+  .wrap { max-width: 560px; width: 100%; }
+  h1 { font-size: 26px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  p.lede { margin: 0 0 28px; color: #555; font-size: 15px; }
+  a.card {
+    display: block;
+    padding: 22px 24px;
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 12px 28px -22px rgba(10,15,30,0.18);
+    transition: transform 160ms ease, border-color 160ms ease;
+  }
+  a.card:hover { transform: translateY(-1px); border-color: rgba(0,106,255,0.5); }
+  a.card h2 { margin: 0 0 4px; font-size: 17px; }
+  a.card span { color: #006AFF; font-size: 13px; font-weight: 500; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Incode — Landing Pages for Review</h1>
+  <p class="lede">Three pages ready for team review.</p>
+  <a class="card" href="./privacy-architecture/">
+    <h2>Privacy Architecture</h2>
+    <span>privacy-architecture →</span>
+  </a>
+  <a class="card" href="./partner-program/">
+    <h2>Partner Program</h2>
+    <span>partner-program →</span>
+  </a>
+  <a class="card" href="./integrations/">
+    <h2>Integrations</h2>
+    <span>integrations →</span>
+  </a>
+</main>
+</body>
+</html>

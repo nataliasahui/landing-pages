@@ -1,27 +1,20 @@
 "use client";
 
-import { useEffect, useRef, type ComponentType, type SVGProps } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
-  Building2,
   ChevronLeft,
   ChevronRight,
-  Film,
-  Landmark,
-  Plane,
-  Radio,
-  ShoppingBag,
 } from "lucide-react";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { Eyebrow } from "@/components/ui/section";
-
-type IconType = ComponentType<SVGProps<SVGSVGElement> & { size?: number }>;
 
 type Industry = {
   name: string;
   stat: string;
   body: string;
-  icon: IconType;
+  icon: ReactNode;
   bgImage?: string;
 };
 
@@ -30,42 +23,42 @@ const INDUSTRIES: Industry[] = [
     name: "Global banks",
     stat: "8 of top 10",
     body: "U.S. banks trust Incode for identity at scale.",
-    icon: Landmark,
+    icon: <DsIcon src="/icons/bank.svg" className="h-[15px] w-[15px] bg-current" />,
     bgImage: "/industries/financial-services.png",
   },
   {
     name: "Entertainment",
     stat: "Top 5",
     body: "Video and gaming platforms protect creators and players.",
-    icon: Film,
+    icon: <DsIcon src="/icons/image.svg" className="h-[15px] w-[15px] bg-current" />,
     bgImage: "/industries/gaming.png",
   },
   {
     name: "Telcos",
     stat: "7 of top 8",
     body: "U.S. carriers secured against SIM swap and ATO.",
-    icon: Radio,
+    icon: <DsIcon src="/icons/headphones.svg" className="h-[15px] w-[15px] bg-current" />,
     bgImage: "/industries/telco.png",
   },
   {
     name: "Retail",
     stat: "6 of 8",
     body: "LATAM retailers verified across marketplace journeys.",
-    icon: ShoppingBag,
+    icon: <DsIcon src="/icons/e-commerce.svg" className="h-[15px] w-[15px] bg-current" />,
     bgImage: "/industries/marketplaces.png",
   },
   {
     name: "Travel",
     stat: "Top 2",
     body: "Global travel brands verify travelers in seconds.",
-    icon: Plane,
+    icon: <DsIcon src="/icons/Map.svg" className="h-[15px] w-[15px] bg-current" />,
     bgImage: "/industries/travel.png",
   },
   {
     name: "Government",
     stat: "Federal",
     body: "Trusted by federal and state government programs.",
-    icon: Building2,
+    icon: <DsIcon src="/icons/building-office.svg" className="h-[15px] w-[15px] bg-current" />,
     bgImage: "/industries/gov.png",
   },
 ];
@@ -159,7 +152,6 @@ export function TrustScale() {
           className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-12 pt-2"
         >
           {LOOPED.map((ind, i) => {
-            const Icon = ind.icon;
             const slug = ind.name.toLowerCase().replace(/\s+/g, "-");
             return (
               <Link
@@ -183,7 +175,7 @@ export function TrustScale() {
                 />
                 <div className="relative flex items-center gap-2.5">
                   <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/15 bg-white/10 backdrop-blur">
-                    <Icon size={15} strokeWidth={1.75} />
+                    {ind.icon}
                   </span>
                   <span className="text-[13.5px] font-medium">{ind.name}</span>
                 </div>

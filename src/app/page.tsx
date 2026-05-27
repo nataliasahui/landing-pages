@@ -1,13 +1,10 @@
-import {
-  ArrowUpRight,
-  Brain,
-  ShieldCheck,
-  TrendingUp,
-} from "lucide-react";
+import type { ReactNode } from "react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { LoadingIntro } from "@/components/loading-intro";
 import { HeroSection } from "@/components/hero-section";
 import { LogoMarquee } from "@/components/logo-marquee";
@@ -15,19 +12,19 @@ import { UseCasesSection } from "@/components/use-cases-section";
 import { TrustScale } from "@/components/trust-scale";
 import { ProductShowcase } from "@/components/product-showcase";
 
-const PLATFORM_OUTCOMES = [
+const PLATFORM_OUTCOMES: Array<{ icon: ReactNode; title: string; body: string }> = [
   {
-    icon: ShieldCheck,
+    icon: <DsIcon src="/icons/shield.svg" className="h-5 w-5 bg-blue" />,
     title: "Eliminate fraud",
     body: "Keep bad actors out with advanced AI-powered prevention. Safeguard every step of the verification journey with end-to-end fraud signal monitoring.",
   },
   {
-    icon: Brain,
+    icon: <DsIcon src="/icons/ai.svg" className="h-5 w-5 bg-blue" />,
     title: "Stay ahead of new threats",
     body: "Anticipate and defeat deepfakes, synthetic identities, and other AI-driven fraud attacks with continuously evolving machine learning models.",
   },
   {
-    icon: TrendingUp,
+    icon: <DsIcon src="/icons/trend-up.svg" className="h-5 w-5 bg-blue" />,
     title: "Optimize conversion",
     body: "Provide users with effortless, seamless and secure identity verification. Customize your experience to blend seamlessly with your brand.",
   },
@@ -116,12 +113,11 @@ function PlatformOutcomes() {
 
       <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
         {PLATFORM_OUTCOMES.map((p, i) => {
-          const Icon = p.icon;
           return (
             <Reveal key={p.title} delay={0.05 * i}>
               <div className="h-full rounded-xl border border-border-light bg-background p-5 sm:p-6">
                 <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-100 sm:h-12 sm:w-12">
-                  <Icon size={20} strokeWidth={1.75} className="text-blue" />
+                  {p.icon}
                 </div>
                 <h3 className="mt-5 font-display text-base text-black sm:mt-6">{p.title}</h3>
                 <p className="mt-2 text-sm text-grey-on-white leading-relaxed sm:mt-3">

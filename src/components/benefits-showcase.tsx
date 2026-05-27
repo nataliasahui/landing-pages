@@ -1,27 +1,28 @@
 "use client";
 
-import { Brain, ShieldCheck, TrendingUp, type LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { Reveal } from "@/components/ui/reveal";
 
 type Benefit = {
-  icon: LucideIcon;
+  icon: ReactNode;
   title: string;
   body: string;
 };
 
 const BENEFITS: Benefit[] = [
   {
-    icon: ShieldCheck,
+    icon: <DsIcon src="/icons/shield.svg" className="h-[22px] w-[22px] bg-blue" />,
     title: "Eliminate fraud",
     body: "Keep bad actors out with advanced AI-powered prevention. Safeguard every step of the verification journey with end-to-end fraud signal monitoring.",
   },
   {
-    icon: Brain,
+    icon: <DsIcon src="/icons/ai.svg" className="h-[22px] w-[22px] bg-blue" />,
     title: "Stay ahead of new threats",
     body: "Anticipate and defeat deepfakes, synthetic identities, and other AI-driven fraud attacks with continuously evolving machine learning models.",
   },
   {
-    icon: TrendingUp,
+    icon: <DsIcon src="/icons/trend-up.svg" className="h-[22px] w-[22px] bg-blue" />,
     title: "Optimize conversion",
     body: "Provide users with effortless, seamless and secure identity verification. Customize your experience to blend seamlessly with your brand.",
   },
@@ -44,12 +45,10 @@ export function BenefitsShowcase() {
 }
 
 function BenefitItem({ benefit }: { benefit: Benefit }) {
-  const Icon = benefit.icon;
-
   return (
     <div className="h-full rounded-xl border border-border-light bg-background p-6">
       <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
-        <Icon size={22} strokeWidth={1.75} className="text-blue" />
+        {benefit.icon}
       </div>
       <h3 className="mt-6 font-display text-base text-black">{benefit.title}</h3>
       <p className="mt-3 text-sm text-grey-on-white leading-relaxed">

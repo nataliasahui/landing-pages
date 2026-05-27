@@ -1,18 +1,10 @@
 import type { Metadata } from "next";
-import {
-  ArrowUpRight,
-  BadgeCheck,
-  Coins,
-  Megaphone,
-  Settings2,
-  Sparkles,
-  Star,
-  TrendingUp,
-  type LucideIcon,
-} from "lucide-react";
+import type { ReactNode } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { PageHeading } from "@/components/ui/page-heading";
 import PartnerEcosystemAnimation from "@/components/partner-ecosystem-animation";
 import { StatsStrip } from "@/components/stats-strip";
@@ -30,34 +22,34 @@ const STATS = [
   { value: "8 of 10", label: "Largest U.S. banks trust Incode identity verification" },
 ];
 
-const BENEFITS: Array<{ icon: LucideIcon; title: string; body: string }> = [
+const BENEFITS: Array<{ icon: ReactNode; title: string; body: string }> = [
   {
-    icon: Star,
+    icon: <DsIcon src="/icons/star.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Co-sell support",
     body: "Deal registration, joint account mapping, and dedicated partner success resources.",
   },
   {
-    icon: BadgeCheck,
+    icon: <DsIcon src="/icons/check.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Deal registration & protection",
     body: "Register deals to protect your pipeline and ensure fair compensation on every opportunity you bring.",
   },
   {
-    icon: Settings2,
+    icon: <DsIcon src="/icons/customization.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Technical enablement",
     body: "Sandbox access, integration docs, and dedicated technical support for your team.",
   },
   {
-    icon: Megaphone,
+    icon: <DsIcon src="/icons/mention.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Co-marketing",
     body: "Joint press releases, case studies, events, and demand generation campaigns.",
   },
   {
-    icon: Coins,
+    icon: <DsIcon src="/icons/money.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Preferred pricing",
     body: "Partner-tier pricing designed to protect your margin and win competitive deals.",
   },
   {
-    icon: Sparkles,
+    icon: <DsIcon src="/icons/star.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Roadmap access",
     body: "Early product previews, beta features, and direct feedback lines to Incode engineering.",
   },
@@ -132,19 +124,19 @@ const PARTNERS: Array<{ name: string; logo?: string; initials: string; href: str
   { name: "HID", logo: "/logos/HID.svg", initials: "HI", href: "https://www.hidglobal.com" },
 ];
 
-const JOIN_CARDS: Array<{ icon: LucideIcon; title: string; body: string }> = [
+const JOIN_CARDS: Array<{ icon: ReactNode; title: string; body: string }> = [
   {
-    icon: Star,
+    icon: <DsIcon src="/icons/star.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Referral & co-sell program",
     body: "Earn referral fees, register deals, and co-sell with the Incode sales team to close faster and protect your margin.",
   },
   {
-    icon: Settings2,
+    icon: <DsIcon src="/icons/customization.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Technical enablement",
     body: "Sandbox environments, integration documentation, and dedicated technical support so your team can deploy with confidence.",
   },
   {
-    icon: TrendingUp,
+    icon: <DsIcon src="/icons/trend-up.svg" className="h-[18px] w-[18px] bg-blue" />,
     title: "Co-marketing & visibility",
     body: "Partner directory listing, joint press releases, case studies, and demand generation campaigns to your shared audience.",
   },
@@ -237,12 +229,11 @@ function WhyPartner() {
       </div>
       <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {BENEFITS.map((b, i) => {
-          const Icon = b.icon;
           return (
             <Reveal key={b.title} delay={0.05 * i}>
               <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition-colors hover:border-white/20">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue/15">
-                  <Icon size={18} strokeWidth={1.75} className="text-blue" />
+                  {b.icon}
                 </div>
                 <h3 className="mt-5 font-display text-sm leading-tight text-white md:text-base">
                   {b.title}
@@ -440,12 +431,11 @@ function JoinCta() {
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {JOIN_CARDS.map((c, i) => {
-          const Icon = c.icon;
           return (
             <Reveal key={c.title} delay={0.05 * i}>
               <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition-colors hover:border-white/20">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue/15">
-                  <Icon size={18} strokeWidth={1.75} className="text-blue" />
+                  {c.icon}
                 </div>
                 <h3 className="mt-5 font-display text-sm leading-tight text-white md:text-base">
                   {c.title}

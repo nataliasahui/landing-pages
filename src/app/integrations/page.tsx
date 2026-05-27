@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, BadgeCheck, Code2, Compass, Settings2, Star } from "lucide-react";
+import type { ReactNode } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { PageHeading } from "@/components/ui/page-heading";
 import { CATEGORIES } from "@/components/integrations-data";
 import { IntegrationsMarketplace } from "@/components/integrations-marketplace";
@@ -36,19 +38,19 @@ const HERO_STATS = [
   { value: "50+", label: "Partners in the ecosystem" },
 ];
 
-const TECH_BENEFITS = [
+const TECH_BENEFITS: Array<{ icon: ReactNode; title: string; body: string }> = [
   {
-    icon: BadgeCheck,
+    icon: <DsIcon src="/icons/check.svg" className="h-4 w-4 bg-blue" />,
     title: "Marketplace listing",
     body: "Get discovered by Incode's enterprise customer base across every industry we serve.",
   },
   {
-    icon: Star,
+    icon: <DsIcon src="/icons/star.svg" className="h-4 w-4 bg-blue" />,
     title: "Co-marketing & joint GTM",
     body: "Joint press releases, case studies, demand generation, and a dedicated partnerships team to help you build pipeline and close deals together.",
   },
   {
-    icon: Settings2,
+    icon: <DsIcon src="/icons/customization.svg" className="h-4 w-4 bg-blue" />,
     title: "Technical enablement",
     body: "Sandbox access, integration documentation, and dedicated support to help you build and ship faster.",
   },
@@ -231,12 +233,11 @@ function TechPartnerCta() {
 
         <ul className="flex flex-col gap-6">
           {TECH_BENEFITS.map((b, i) => {
-            const Icon = b.icon;
             return (
               <Reveal key={b.title} delay={0.1 + 0.05 * i}>
                 <li className="flex items-start gap-4">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-100">
-                    <Icon size={16} strokeWidth={1.75} className="text-blue" />
+                    {b.icon}
                   </span>
                   <div>
                     <div className="font-display text-sm leading-tight text-black md:text-base">
@@ -261,7 +262,7 @@ function BottomCta() {
         <Reveal>
           <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue/15">
-              <Compass size={20} strokeWidth={1.75} className="text-blue" />
+              <DsIcon src="/icons/Map.svg" className="h-5 w-5 bg-blue" />
             </div>
             <h3 className="mt-5 font-display text-xl text-white sm:text-2xl">
               Missing an integration?
@@ -281,7 +282,7 @@ function BottomCta() {
         <Reveal delay={0.1}>
           <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue/15">
-              <Code2 size={20} strokeWidth={1.75} className="text-blue" />
+              <DsIcon src="/icons/uxv2.svg" className="h-5 w-5 bg-blue" />
             </div>
             <h3 className="mt-5 font-display text-xl text-white sm:text-2xl">
               Build with the Incode API

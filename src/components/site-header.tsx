@@ -3,53 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import {
   ArrowUpRight,
-  BadgeCheck,
-  BookOpen,
-  Brain,
-  Building,
-  Building2,
-  CalendarCheck,
   ChevronDown,
-  ClipboardList,
-  Compass,
-  Cpu,
-  Dice5,
-  FileQuestion,
-  FileText,
-  Fingerprint,
-  Gamepad2,
-  Gauge,
-  GraduationCap,
-  HeartPulse,
-  IdCard,
-  Landmark,
-  LayoutDashboard,
-  Lock,
   Menu,
-  MessageCircle,
-  Network,
-  Newspaper,
-  Palette,
-  Plug,
-  Puzzle,
-  Handshake,
-  ScanFace,
-  ScanLine,
-  ShieldCheck,
-  ShoppingBag,
-  Smartphone,
-  Sparkles,
-  TrendingUp,
-  UserCheck,
-  Video,
-  Workflow,
   X,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { Logo } from "./logo";
 import { ButtonLink } from "@/components/ui/button";
 
@@ -64,42 +26,44 @@ const NAV: NavItem[] = [
   { href: "#", label: "Company", hasMenu: true },
 ];
 
-type MenuLink = { icon: LucideIcon; title: string; sub?: string; href: string };
+type MenuLink = { icon: ReactNode; title: string; sub?: string; href: string };
 type MenuColumn = { heading: string; links: MenuLink[]; columns?: 1 | 2 };
+
+const MENU_ICON_CLASS = "h-4 w-4 bg-current";
 
 const PLATFORM_MENU: MenuColumn[] = [
   {
     heading: "Platform",
     columns: 2,
     links: [
-      { icon: Compass, title: "Explore Platform", href: "#" },
-      { icon: LayoutDashboard, title: "Orchestration Dashboard", sub: "Everything in one place", href: "#" },
-      { icon: Workflow, title: "Workflow Builder", sub: "No-code flow builder", href: "#" },
-      { icon: Palette, title: "UI Customization", sub: "Brand-aligned journeys", href: "#" },
-      { icon: Gauge, title: "Decisioning & Results", sub: "Transparency on every session", href: "#" },
-      { icon: TrendingUp, title: "Fraud Analytics", sub: "Monitor performance and trends", href: "#" },
-      { icon: ClipboardList, title: "Case Management", sub: "Smarter case reviews", href: "#" },
-      { icon: Plug, title: "Platform Integrations", sub: "APIs and SDKs", href: "#" },
+      { icon: <DsIcon src="/icons/Map.svg" className={MENU_ICON_CLASS} />, title: "Explore Platform", href: "#" },
+      { icon: <DsIcon src="/icons/orchestration-dashboard.svg" className={MENU_ICON_CLASS} />, title: "Orchestration Dashboard", sub: "Everything in one place", href: "#" },
+      { icon: <DsIcon src="/icons/workflow-builder.svg" className={MENU_ICON_CLASS} />, title: "Workflow Builder", sub: "No-code flow builder", href: "#" },
+      { icon: <DsIcon src="/icons/customization.svg" className={MENU_ICON_CLASS} />, title: "UI Customization", sub: "Brand-aligned journeys", href: "#" },
+      { icon: <DsIcon src="/icons/decisioning.svg" className={MENU_ICON_CLASS} />, title: "Decisioning & Results", sub: "Transparency on every session", href: "#" },
+      { icon: <DsIcon src="/icons/trend-up.svg" className={MENU_ICON_CLASS} />, title: "Fraud Analytics", sub: "Monitor performance and trends", href: "#" },
+      { icon: <DsIcon src="/icons/document.svg" className={MENU_ICON_CLASS} />, title: "Case Management", sub: "Smarter case reviews", href: "#" },
+      { icon: <DsIcon src="/icons/integrations.svg" className={MENU_ICON_CLASS} />, title: "Platform Integrations", sub: "APIs and SDKs", href: "#" },
     ],
   },
   {
     heading: "Featured Products",
     links: [
-      { icon: ShieldCheck, title: "Deepsight", href: "#" },
-      { icon: BadgeCheck, title: "Workforce (KYE)", href: "#" },
-      { icon: Brain, title: "Risk AI Agent", href: "#" },
-      { icon: Sparkles, title: "Agentic Identity", href: "#" },
+      { icon: <DsIcon src="/icons/shield.svg" className={MENU_ICON_CLASS} />, title: "Deepsight", href: "#" },
+      { icon: <DsIcon src="/icons/check.svg" className={MENU_ICON_CLASS} />, title: "Workforce (KYE)", href: "#" },
+      { icon: <DsIcon src="/icons/ai.svg" className={MENU_ICON_CLASS} />, title: "Risk AI Agent", href: "#" },
+      { icon: <DsIcon src="/icons/star.svg" className={MENU_ICON_CLASS} />, title: "Agentic Identity", href: "#" },
     ],
   },
   {
     heading: "Featured Modules",
     links: [
-      { icon: ScanFace, title: "Facial Recognition", href: "#" },
-      { icon: IdCard, title: "Document Verification", href: "#" },
-      { icon: ScanLine, title: "OCR", href: "#" },
-      { icon: Fingerprint, title: "Deepfake Detection", href: "#" },
-      { icon: Network, title: "Network", href: "#" },
-      { icon: Cpu, title: "Face Age Estimation", href: "#" },
+      { icon: <DsIcon src="/icons/face-capture.svg" className={MENU_ICON_CLASS} />, title: "Facial Recognition", href: "#" },
+      { icon: <DsIcon src="/icons/id.svg" className={MENU_ICON_CLASS} />, title: "Document Verification", href: "#" },
+      { icon: <DsIcon src="/icons/scan.svg" className={MENU_ICON_CLASS} />, title: "OCR", href: "#" },
+      { icon: <DsIcon src="/icons/deepfake-detection.svg" className={MENU_ICON_CLASS} />, title: "Deepfake Detection", href: "#" },
+      { icon: <DsIcon src="/icons/network.svg" className={MENU_ICON_CLASS} />, title: "Network", href: "#" },
+      { icon: <DsIcon src="/icons/uxv2.svg" className={MENU_ICON_CLASS} />, title: "Face Age Estimation", href: "#" },
     ],
   },
 ];
@@ -109,26 +73,26 @@ const SOLUTIONS_MENU: MenuColumn[] = [
     heading: "Use cases",
     columns: 2,
     links: [
-      { icon: UserCheck, title: "KYC/AML compliance", href: "#" },
-      { icon: IdCard, title: "Identity Verification (IDV)", href: "#" },
-      { icon: FileQuestion, title: "Non-Document Verification", href: "#" },
-      { icon: Building2, title: "Know Your Business (KYB)", href: "#" },
-      { icon: CalendarCheck, title: "Age Verification", href: "#" },
-      { icon: ScanFace, title: "Candidate Verification", href: "#" },
-      { icon: Smartphone, title: "Digital ID Verification", href: "#" },
+      { icon: <DsIcon src="/icons/user-verified.svg" className={MENU_ICON_CLASS} />, title: "KYC/AML compliance", href: "#" },
+      { icon: <DsIcon src="/icons/id.svg" className={MENU_ICON_CLASS} />, title: "Identity Verification (IDV)", href: "#" },
+      { icon: <DsIcon src="/icons/non-document.svg" className={MENU_ICON_CLASS} />, title: "Non-Document Verification", href: "#" },
+      { icon: <DsIcon src="/icons/building-office.svg" className={MENU_ICON_CLASS} />, title: "Know Your Business (KYB)", href: "#" },
+      { icon: <DsIcon src="/icons/calendar.svg" className={MENU_ICON_CLASS} />, title: "Age Verification", href: "#" },
+      { icon: <DsIcon src="/icons/face-capture.svg" className={MENU_ICON_CLASS} />, title: "Candidate Verification", href: "#" },
+      { icon: <DsIcon src="/icons/mobile.svg" className={MENU_ICON_CLASS} />, title: "Digital ID Verification", href: "#" },
     ],
   },
   {
     heading: "Industries",
     columns: 2,
     links: [
-      { icon: Landmark, title: "Financial services", href: "#" },
-      { icon: HeartPulse, title: "Healthcare", href: "#" },
-      { icon: Gamepad2, title: "Online gaming", href: "#" },
-      { icon: Dice5, title: "Online gambling", href: "#" },
-      { icon: ShoppingBag, title: "E-commerce & marketplaces", href: "#" },
-      { icon: Building, title: "Public sector", href: "#" },
-      { icon: MessageCircle, title: "Social media", href: "#" },
+      { icon: <DsIcon src="/icons/bank.svg" className={MENU_ICON_CLASS} />, title: "Financial services", href: "#" },
+      { icon: <DsIcon src="/icons/heart.svg" className={MENU_ICON_CLASS} />, title: "Healthcare", href: "#" },
+      { icon: <DsIcon src="/icons/online-gaming.svg" className={MENU_ICON_CLASS} />, title: "Online gaming", href: "#" },
+      { icon: <DsIcon src="/icons/online-gambling.svg" className={MENU_ICON_CLASS} />, title: "Online gambling", href: "#" },
+      { icon: <DsIcon src="/icons/e-commerce.svg" className={MENU_ICON_CLASS} />, title: "E-commerce & marketplaces", href: "#" },
+      { icon: <DsIcon src="/icons/public-sector.svg" className={MENU_ICON_CLASS} />, title: "Public sector", href: "#" },
+      { icon: <DsIcon src="/icons/chat.svg" className={MENU_ICON_CLASS} />, title: "Social media", href: "#" },
     ],
   },
 ];
@@ -138,27 +102,27 @@ const RESOURCES_MENU: MenuColumn[] = [
     heading: "Learning",
     columns: 2,
     links: [
-      { icon: ShieldCheck, title: "Trust Center", sub: "Security, privacy, and compliance posture", href: "#" },
-      { icon: Lock, title: "Privacy Architecture", sub: "The protection layer that holds no data", href: "/resources/privacy-architecture" },
-      { icon: BookOpen, title: "Resources Library", sub: "Guides, white papers, and reports", href: "#" },
-      { icon: GraduationCap, title: "Incode Academy", sub: "Training and certifications", href: "#" },
-      { icon: Video, title: "Webinars", sub: "On-demand and upcoming sessions", href: "#" },
-      { icon: FileText, title: "Case studies", sub: "How customers deploy Incode", href: "#" },
+      { icon: <DsIcon src="/icons/shield.svg" className={MENU_ICON_CLASS} />, title: "Trust Center", sub: "Security, privacy, and compliance posture", href: "#" },
+      { icon: <DsIcon src="/icons/lock.svg" className={MENU_ICON_CLASS} />, title: "Privacy Architecture", sub: "The protection layer that holds no data", href: "/resources/privacy-architecture" },
+      { icon: <DsIcon src="/icons/document.svg" className={MENU_ICON_CLASS} />, title: "Resources Library", sub: "Guides, white papers, and reports", href: "#" },
+      { icon: <DsIcon src="/icons/cup.svg" className={MENU_ICON_CLASS} />, title: "Incode Academy", sub: "Training and certifications", href: "#" },
+      { icon: <DsIcon src="/icons/camera.svg" className={MENU_ICON_CLASS} />, title: "Webinars", sub: "On-demand and upcoming sessions", href: "#" },
+      { icon: <DsIcon src="/icons/document.svg" className={MENU_ICON_CLASS} />, title: "Case studies", sub: "How customers deploy Incode", href: "#" },
     ],
   },
   {
     heading: "Stay informed",
     links: [
-      { icon: Newspaper, title: "Blog", href: "#" },
-      { icon: MessageCircle, title: "Press", href: "#" },
-      { icon: CalendarCheck, title: "Events", href: "#" },
+      { icon: <DsIcon src="/icons/document.svg" className={MENU_ICON_CLASS} />, title: "Blog", href: "#" },
+      { icon: <DsIcon src="/icons/chat.svg" className={MENU_ICON_CLASS} />, title: "Press", href: "#" },
+      { icon: <DsIcon src="/icons/calendar.svg" className={MENU_ICON_CLASS} />, title: "Events", href: "#" },
     ],
   },
   {
     heading: "For partners",
     links: [
-      { icon: Handshake, title: "Partner Program", href: "/partner-program" },
-      { icon: Puzzle, title: "Integrations", href: "/integrations" },
+      { icon: <DsIcon src="/icons/ecosystem.svg" className={MENU_ICON_CLASS} />, title: "Partner Program", href: "/partner-program" },
+      { icon: <DsIcon src="/icons/integrations.svg" className={MENU_ICON_CLASS} />, title: "Integrations", href: "/integrations" },
     ],
   },
 ];
@@ -379,7 +343,6 @@ export function SiteHeader() {
                               </div>
                               <div className="flex flex-col">
                                 {col.links.map((link) => {
-                                  const Icon = link.icon;
                                   return (
                                     <Link
                                       key={link.title}
@@ -391,7 +354,7 @@ export function SiteHeader() {
                                       className="flex items-center gap-3 rounded-lg px-2 py-2 text-[14px] text-black hover:bg-black/[0.04] transition-colors"
                                     >
                                       <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border-light/70 bg-off-white/70 text-foreground/70">
-                                        <Icon size={14} strokeWidth={1.75} />
+                                        {link.icon}
                                       </span>
                                       {link.title}
                                     </Link>
@@ -456,7 +419,6 @@ function MegaPanel({ menu }: { menu: MenuColumn[] }) {
             )}
           >
             {col.links.map((link) => {
-              const Icon = link.icon;
               return (
                 <a
                   key={link.title}
@@ -467,7 +429,7 @@ function MegaPanel({ menu }: { menu: MenuColumn[] }) {
                   )}
                 >
                   <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border-light/70 bg-off-white/70 text-foreground/70 transition-all duration-200 group-hover/link:border-blue/30 group-hover/link:bg-blue/[0.08] group-hover/link:text-blue group-hover/link:shadow-[0_6px_14px_-8px_rgba(0,84,255,0.4)]">
-                    <Icon size={16} strokeWidth={1.75} />
+                    {link.icon}
                   </span>
                   <span className="flex min-w-0 flex-col">
                     <span className="text-[13.5px] font-medium leading-tight text-foreground transition-colors group-hover/link:text-blue">
