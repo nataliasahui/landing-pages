@@ -44,24 +44,28 @@ const STEPS: ExplainerStep[] = [
     title: "Start the check",
     subtitle: "Triggered the moment you reach age-gated content or services.",
     body: "When you access age-restricted content or services, you'll be asked to complete a quick age verification.",
+    image: "/Illustration/step-1-start-the-check.png",
   },
   {
     icon: <DsIcon src="/icons/camera.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "A quick selfie scan",
     subtitle: "Your camera activates for just a few seconds.",
     body: "Your camera briefly activates and the age estimation runs directly on your device. The process is automatic and takes only a few seconds.",
+    image: "/Illustration/step-2-selfie-scan.png",
   },
   {
     icon: <DsIcon src="/icons/mobile.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "Age is estimated on your phone",
     subtitle: "Nothing is uploaded — your device does the work.",
     body: "The estimation happens entirely on your phone. Nothing is uploaded or sent anywhere — your device does all the work and the result is instant.",
+    image: "/Illustration/step-3-age-estimated.png",
   },
   {
     icon: <DsIcon src="/icons/check.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "Access is confirmed",
     subtitle: "A yes/no result against the age threshold — never your actual age.",
     body: "If you meet the required age threshold, access is granted. Importantly, your actual estimated age is never shared — the system only returns a yes or no against the age threshold. No one learns how old you appear to be, only that you qualify.",
+    image: "/Illustration/step-4-access-confirmed.png",
   },
 ];
 
