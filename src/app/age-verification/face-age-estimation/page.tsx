@@ -1,22 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Camera,
-  CheckCircle,
-  Cpu,
-  Lock,
-  ShieldCheck,
-  Target,
-  UserX,
-  Zap,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { PageHeading } from "@/components/ui/page-heading";
+import { DsIcon } from "@/components/ui/ds-icon";
 import { StepsExplainer, type ExplainerStep } from "@/components/steps-explainer";
 
 export const metadata: Metadata = {
@@ -25,24 +15,24 @@ export const metadata: Metadata = {
     "Your face never leaves your device. Privacy-preserving age estimation that runs entirely on your phone — never stored, never shared, never seen.",
 };
 
-const PROMISES: Array<{ icon: LucideIcon; title: string; body: string }> = [
+const PROMISES: Array<{ icon: ReactNode; title: string; body: string }> = [
   {
-    icon: Lock,
+    icon: <DsIcon src="/icons/lock.svg" className="h-5 w-5 bg-blue" />,
     title: "Your data never leaves your device",
     body: "All processing happens locally on your phone. Your face is analyzed on your device and immediately discarded.",
   },
   {
-    icon: Zap,
+    icon: <DsIcon src="/icons/stopwatch.svg" className="h-5 w-5 bg-blue" />,
     title: "Done in seconds",
     body: "No forms. No ID uploads. No waiting. The check takes just a few seconds and uses your device's camera, similar to unlocking your phone with your face.",
   },
   {
-    icon: Target,
+    icon: <DsIcon src="/icons/target.svg" className="h-5 w-5 bg-blue" />,
     title: "Accurate for everyone",
     body: "Calibrated to work reliably across different ages, lighting conditions, and backgrounds. Designed to be fair regardless of who you are or where you are.",
   },
   {
-    icon: UserX,
+    icon: <DsIcon src="/icons/user.svg" className="h-5 w-5 bg-blue" />,
     title: "We can't identify you",
     body: "This is age estimation only. The system cannot determine your identity, name, gender, ethnicity, or any other personal attribute. It produces an estimation on your age, nothing more.",
   },
@@ -50,25 +40,25 @@ const PROMISES: Array<{ icon: LucideIcon; title: string; body: string }> = [
 
 const STEPS: ExplainerStep[] = [
   {
-    icon: <ShieldCheck size={13} strokeWidth={1.75} />,
+    icon: <DsIcon src="/icons/shield.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "Start the check",
     subtitle: "Triggered the moment you reach age-gated content or services.",
     body: "When you access age-restricted content or services, you'll be asked to complete a quick age verification.",
   },
   {
-    icon: <Camera size={13} strokeWidth={1.75} />,
+    icon: <DsIcon src="/icons/camera.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "A quick selfie scan",
     subtitle: "Your camera activates for just a few seconds.",
     body: "Your camera briefly activates and the age estimation runs directly on your device. The process is automatic and takes only a few seconds.",
   },
   {
-    icon: <Cpu size={13} strokeWidth={1.75} />,
+    icon: <DsIcon src="/icons/mobile.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "Age is estimated on your phone",
     subtitle: "Nothing is uploaded — your device does the work.",
     body: "The estimation happens entirely on your phone. Nothing is uploaded or sent anywhere — your device does all the work and the result is instant.",
   },
   {
-    icon: <CheckCircle size={13} strokeWidth={1.75} />,
+    icon: <DsIcon src="/icons/check.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "Access is confirmed",
     subtitle: "A yes/no result against the age threshold — never your actual age.",
     body: "If you meet the required age threshold, access is granted. Importantly, your actual estimated age is never shared — the system only returns a yes or no against the age threshold. No one learns how old you appear to be, only that you qualify.",
@@ -229,24 +219,21 @@ function Promises() {
         </h2>
       </Reveal>
       <div className="mt-12 grid gap-5 md:grid-cols-2">
-        {PROMISES.map((p, i) => {
-          const Icon = p.icon;
-          return (
-            <Reveal key={p.title} delay={0.05 * i}>
-              <div className="flex h-full flex-col gap-4 rounded-2xl border border-border-light bg-background p-7">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100">
-                  <Icon size={20} strokeWidth={1.75} className="text-blue" />
-                </span>
-                <h3 className="font-display text-xl leading-tight text-black md:text-2xl">
-                  {p.title}
-                </h3>
-                <p className="text-[13px] leading-relaxed text-grey-on-white">
-                  {p.body}
-                </p>
-              </div>
-            </Reveal>
-          );
-        })}
+        {PROMISES.map((p, i) => (
+          <Reveal key={p.title} delay={0.05 * i}>
+            <div className="flex h-full flex-col gap-4 rounded-2xl border border-border-light bg-background p-7">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100">
+                {p.icon}
+              </span>
+              <h3 className="font-display text-xl leading-tight text-black md:text-2xl">
+                {p.title}
+              </h3>
+              <p className="text-[13px] leading-relaxed text-grey-on-white">
+                {p.body}
+              </p>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </Section>
   );
