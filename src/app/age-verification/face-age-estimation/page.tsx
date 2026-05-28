@@ -57,14 +57,14 @@ const STEPS: ExplainerStep[] = [
     icon: <DsIcon src="/icons/mobile.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "Age is estimated on your phone",
     subtitle: "Nothing is uploaded — your device does the work.",
-    body: "The estimation happens entirely on your phone. Nothing is uploaded or sent anywhere — your device does all the work and the result is instant.",
+    body: "The estimation happens entirely on your phone. No face template is uploaded or sent anywhere; your device does all the work and the result is instant.",
     image: "/Illustration/step-3-age-estimated.png",
   },
   {
     icon: <DsIcon src="/icons/check.svg" className="h-3.5 w-3.5 bg-current" />,
     title: "Access is confirmed",
     subtitle: "A yes/no result against the age threshold — never your actual age.",
-    body: "If you meet the required age threshold, access is granted. Importantly, your actual estimated age is never shared — the system only returns a yes or no against the age threshold. No one learns how old you appear to be, only that you qualify.",
+    body: "If you meet the required age threshold, access is granted. Importantly, your actual estimated age is never shared, the system only returns a yes or no against the age threshold. No one learns how old you appear to be, only that you qualify.",
     image: "/Illustration/step-4-access-confirmed.png",
   },
 ];
@@ -175,11 +175,11 @@ function Hero() {
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:items-center">
           <div>
             <Reveal>
-              <Eyebrow>Age Verification</Eyebrow>
+              <Eyebrow>Face Age Estimation</Eyebrow>
             </Reveal>
             <Reveal delay={0.1}>
               <PageHeading tone="dark" className="mt-6">
-                Your face never leaves your device.
+                Your face never leaves your device
               </PageHeading>
             </Reveal>
             <Reveal delay={0.2}>
@@ -218,8 +218,8 @@ function Promises() {
         <Eyebrow tone="light">What it means for you</Eyebrow>
       </Reveal>
       <Reveal delay={0.1}>
-        <h2 className="mt-5 font-display text-3xl leading-tight text-balance text-black sm:text-4xl">
-          Privacy is the architecture, not a setting.
+        <h2 className="mt-5 font-display text-3xl md:text-4xl text-balance">
+          Privacy is the architecture, not a setting
         </h2>
       </Reveal>
       <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -232,7 +232,7 @@ function Promises() {
               <h3 className="font-display text-xl leading-tight text-black md:text-2xl">
                 {p.title}
               </h3>
-              <p className="text-[13px] leading-relaxed text-grey-on-white">
+              <p className="text-sm leading-relaxed text-grey-on-white">
                 {p.body}
               </p>
             </div>
@@ -255,12 +255,12 @@ function HowItWorks() {
           <Eyebrow>How it works</Eyebrow>
         </Reveal>
         <Reveal delay={0.1}>
-          <h2 className="mt-5 font-display text-3xl leading-tight text-balance text-white sm:text-4xl md:text-[44px]">
-            Four steps. Seconds long. Nothing leaves your phone.
+          <h2 className="mt-5 font-display text-3xl md:text-4xl text-balance">
+            Four steps. Seconds long. Nothing leaves your phone
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/70 sm:text-base">
+          <p className="mt-6 max-w-xl text-grey-on-black">
             From the moment you start the check to the moment access is
             granted, your face is processed entirely on your device. No
             uploads, no servers, no exceptions.
@@ -286,23 +286,25 @@ function Fallback() {
             <Eyebrow tone="light">If the check isn&apos;t conclusive</Eyebrow>
           </Reveal>
           <Reveal delay={0.1}>
-            <h2 className="mt-5 font-display text-3xl leading-tight text-balance text-black sm:text-4xl">
-              In some cases, additional verification may be needed.
+            <h2 className="mt-5 font-display text-3xl md:text-4xl text-balance">
+              In some cases, additional verification may be needed
             </h2>
           </Reveal>
         </div>
         <Reveal delay={0.2}>
           <div className="rounded-2xl border border-border-light bg-background p-7">
-            <p className="text-[14px] leading-relaxed text-grey-on-white">
+            <p className="text-sm leading-relaxed text-grey-on-white">
               If the age estimation is not conclusive, you may be asked to
               complete an additional verification step using a government-issued
-              ID. The system verifies your date of birth and compares the ID
-              photo to your selfie to confirm the document belongs to you.
+              ID.
             </p>
-            <p className="mt-4 text-[14px] leading-relaxed text-grey-on-white">
-              The process is fully automated, with no human review involved, and
-              is designed to minimize unnecessary exposure or retention of
-              personal data. All images and information are deleted immediately.
+            <p className="mt-4 text-sm leading-relaxed text-grey-on-white">
+              In that case, the system verifies your date of birth and compares
+              the ID photo to your selfie to confirm the document belongs to
+              you. The process is fully automated, with no human review
+              involved, and is designed to minimize unnecessary exposure or
+              retention of personal data. All images and information are deleted
+              immediately.
             </p>
           </div>
         </Reveal>
@@ -318,8 +320,8 @@ function Questions() {
         <Eyebrow tone="light">FAQ</Eyebrow>
       </Reveal>
       <Reveal delay={0.1}>
-        <h2 className="mt-5 font-display text-3xl leading-tight text-balance text-black sm:text-4xl">
-          Your questions, answered.
+        <h2 className="mt-5 font-display text-3xl md:text-4xl text-balance">
+          Your questions, answered
         </h2>
       </Reveal>
       <div className="mt-12 space-y-3">
@@ -327,14 +329,14 @@ function Questions() {
           <Reveal key={item.q} delay={0.04 * i}>
             <details className="group rounded-2xl border border-border-light bg-[#FCFCFC] open:shadow-[0_12px_28px_-22px_rgba(10,15,30,0.18)] transition-all">
               <summary className="flex cursor-pointer items-start justify-between gap-4 p-6 list-none">
-                <span className="font-display text-[17px] font-medium text-black md:text-lg">
+                <span className="font-display text-base md:text-lg">
                   {item.q}
                 </span>
                 <span className="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border-light bg-white text-black/60 transition-transform duration-200 group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <div className="px-6 pb-6 text-[14px] leading-relaxed text-grey-on-white">
+              <div className="px-6 pb-6 text-sm leading-relaxed text-grey-on-white">
                 {item.a}
               </div>
             </details>
@@ -355,7 +357,7 @@ function Outro() {
         <Reveal delay={0.1}>
           <PageHeading as="h2" tone="dark" className="mt-6">
             Age estimation powered by Incode. Privacy-preserving by
-            architecture — not by policy.
+            architecture — not by policy
           </PageHeading>
         </Reveal>
         <Reveal delay={0.2}>
